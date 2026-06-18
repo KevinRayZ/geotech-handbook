@@ -4,7 +4,7 @@
  * v2.0 - 增加规范查询和专家匹配
  */
 
-const { getAllKnowledge, getCategoryKnowledge, searchKnowledge: searchData, getSafetyFactors, getSoilParams } = require('./knowledge-data');
+const { getAllKnowledge, getCategoryKnowledge, searchKnowledge: searchData, getSafetyFactors, getSoilParams, getRockClassification, getRockIntegrity, getSoilClassification } = require('./knowledge-data');
 const { getStandardsData, searchStandards } = require('../../data/standards/index');
 const { matchExpert, getExpertList } = require('../experts/expert-service');
 
@@ -249,5 +249,8 @@ module.exports = {
   getStandardByCategory,
   getStatistics,
   getSafetyFactors,
-  getSoilParams
+  getSoilParams,
+  getRockClassification,
+  getRockIntegrity,
+  getSoilClassification
 };
