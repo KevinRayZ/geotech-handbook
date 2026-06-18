@@ -4,7 +4,7 @@
   <view class="welcome-section">
     <view class="welcome-bg"></view>
     <view class="welcome-content">
-      <view class="app-title">岩土工程随身手册</view>
+      <view class="app-title">岩土工程随身智库</view>
       <view class="app-desc">专业知识 · 随时查阅</view>
     </view>
   </view>

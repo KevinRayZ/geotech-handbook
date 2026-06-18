@@ -55,7 +55,7 @@ Page({
         } else if (res.tapIndex === 2) {
           // 复制链接
           wx.setClipboardData({
-            data: '岩土工程随身手册 - 方案推荐',
+            data: '岩土工程随身智库 - 方案推荐',
             success: () => {
               wx.showToast({
                 title: '链接已复制',

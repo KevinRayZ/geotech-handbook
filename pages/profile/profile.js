@@ -122,7 +122,7 @@ Page({
   // 分享
   onShareAppMessage() {
     return {
-      title: '岩土工程随身手册 - 岩土工程师的移动工具箱',
+      title: '岩土工程随身智库 - 岩土工程师的移动工具箱',
       path: '/pages/profile/profile'
     };
   }

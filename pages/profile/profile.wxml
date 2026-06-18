@@ -92,7 +92,7 @@
 
   <!-- 底部信息 -->
   <view class="footer">
-    <view class="footer-text">岩土工程随身手册</view>
+    <view class="footer-text">岩土工程随身智库</view>
     <view class="footer-version">版本 {{version}}</view>
     <view class="footer-copyright">基于5部权威岩土工程工具书</view>
   </view>

@@ -1,7 +1,7 @@
 {
   "name": "geotech-handbook",
   "version": "1.0.0",
-  "description": "岩土工程随身手册 - 微信小程序",
+  "description": "岩土工程随身智库 - 微信小程序",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

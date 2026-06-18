@@ -3,7 +3,7 @@ const { initKnowledge, getStatistics } = require('./core/knowledge/index');
 
 App({
   onLaunch() {
-    console.log('[App] 岩土工程随身手册启动');
+    console.log('[App] 岩土工程随身智库启动');
     
     // 初始化知识库
     this.initKnowledgeBase();
@@ -73,7 +73,7 @@ App({
     
     config: {
       version: '1.0.0',
-      appName: '岩土工程随身手册',
+      appName: '岩土工程随身智库',
       categories: [
         { id: 'geology', name: '工程地质', icon: 'leaf', color: '#07a35a' },
         { id: 'pit', name: '基坑工程', icon: 'building-1', color: '#0052d9' },
