@@ -121,7 +121,7 @@
     </view>
     <view class="banner-center">
       <view class="banner-title">专项方案咨询</view>
-      <view class="banner-desc">专业团队提供技术支持 · 付费服务</view>
+      <view class="banner-desc">专业设计院提供技术支持 · 付费服务</view>
     </view>
     <t-icon name="chevron-right" size="24px" color="#999"/>
   </view>
