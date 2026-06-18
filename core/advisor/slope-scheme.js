@@ -1,9 +1,10 @@
 /**
  * 边坡治理方案推荐引擎
- * 根据边坡参数推荐初步治理方案
+ * 参考规范：GB 50330-2013《建筑边坡工程技术规范》
+ *          GB/T 38509-2020《滑坡防治设计规范》
  */
 
-// 边坡治理方案库
+// 边坡治理方案库（基于GB 50330-2013第6章支护结构选型）
 const SLOPE_SCHEMES = {
   // ========== 岩质边坡 ==========
   rock_light: {
@@ -20,7 +21,9 @@ const SLOPE_SCHEMES = {
       '锚杆间距': '1.5-2.5m',
       '锚杆直径': 'Φ22-Φ28',
       '钢筋网': 'Φ6@150-200mm'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第6.1节：岩质边坡可采用喷锚支护',
+    safetyFactor: { permanent: 1.30, temporary: 1.20 }
   },
   rock_medium: {
     name: '格构锚固',
@@ -36,7 +39,9 @@ const SLOPE_SCHEMES = {
       '锚杆预应力': '100-500kN',
       '锚杆间距': '2-3m',
       '混凝土强度': 'C25-C30'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第7.1节：锚杆倾角宜为15°~35°',
+    safetyFactor: { permanent: 1.35, temporary: 1.25 }
   },
   rock_heavy: {
     name: '预应力锚索+抗滑桩',
@@ -49,10 +54,12 @@ const SLOPE_SCHEMES = {
       '锚索长度': '15-40m',
       '锚索吨位': '500-2000kN',
       '抗滑桩截面': '1.5×2.0m~2.5×3.5m',
-      '桩间距': '4-6m',
+      '桩间距': '4-6m（2~5倍桩径）',
       '桩长': '10-25m',
       '嵌固深度': '桩长的1/3~1/2'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第8.1节：抗滑桩桩间距宜为2~5倍桩径',
+    safetyFactor: { permanent: 1.35, temporary: 1.25 }
   },
 
   // ========== 土质边坡 ==========
@@ -64,13 +71,15 @@ const SLOPE_SCHEMES = {
     advantages: ['造价最低', '生态环保', '施工简便'],
     disadvantages: ['占地面积大', '高度受限'],
     designParams: {
-      '坡率': '1:1.25~1:1.5',
-      '坡高': '≤8m',
-      '平台宽度': '≥2m（每8m设一级）',
+      '坡率': '1:1.0~1:1.75（按土质类型）',
+      '坡高': '≤8m（每8m设一级平台）',
+      '平台宽度': '≥2m',
       '植草方式': '喷播植草',
       '截水沟': '坡顶设置',
       '排水沟': '坡脚设置'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第6.2节：土质边坡坡率宜为1:1.0~1:1.75',
+    safetyFactor: { permanent: 1.25, temporary: 1.15 }
   },
   soil_medium: {
     name: '土钉墙+喷射混凝土',
@@ -86,7 +95,9 @@ const SLOPE_SCHEMES = {
       '钻孔直径': '100-150mm',
       '喷射混凝土': '80-150mm厚',
       '注浆压力': '0.3-0.5MPa'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第6.1节：土质边坡可采用土钉墙支护',
+    safetyFactor: { permanent: 1.30, temporary: 1.20 }
   },
   soil_heavy: {
     name: '抗滑桩+预应力锚索',
@@ -97,12 +108,14 @@ const SLOPE_SCHEMES = {
     disadvantages: ['造价高', '施工周期长'],
     designParams: {
       '抗滑桩截面': '1.5×2.0m~2.5×3.5m',
-      '桩间距': '4-6m',
+      '桩间距': '4-6m（2~5倍桩径）',
       '桩长': '10-25m',
       '锚索长度': '15-35m',
       '锚索吨位': '500-1500kN',
       '嵌固深度': '桩长的1/3~1/2'
-    }
+    },
+    normativeBasis: 'GB/T 38509-2020 第7.1节：抗滑桩安全系数Fs≥1.25',
+    safetyFactor: { permanent: 1.35, temporary: 1.25 }
   },
 
   // ========== 特殊边坡 ==========
@@ -120,7 +133,9 @@ const SLOPE_SCHEMES = {
       '排水孔': 'Φ100@2-3m',
       '反滤层': '300mm厚砂砾',
       '截水沟': '坡顶设置'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第6.1节：重力式挡墙高度不宜超过8m',
+    safetyFactor: { permanent: 1.30, temporary: 1.20 }
   },
   expansive_slope: {
     name: '柔性支护+排水',
@@ -136,7 +151,9 @@ const SLOPE_SCHEMES = {
       '排水层': '300mm厚碎石',
       '坡面防护': '骨架植草',
       '坡脚防护': '浆砌石护脚'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第9.1节：排水设计应包括地表排水和地下排水',
+    safetyFactor: { permanent: 1.30, temporary: 1.20 }
   },
 
   // ========== 通用推荐 ==========
@@ -154,12 +171,15 @@ const SLOPE_SCHEMES = {
       '监测要求': '位移、沉降、裂缝监测',
       '设计周期': '15-30天',
       '施工周期': '根据方案确定'
-    }
+    },
+    normativeBasis: 'GB 50330-2013 第5.2节：应采用多种方法进行稳定性分析',
+    safetyFactor: { permanent: 1.30, temporary: 1.20 }
   }
 };
 
 /**
  * 推荐边坡治理方案
+ * 基于GB 50330-2013《建筑边坡工程技术规范》推荐
  * @param {Object} params 边坡参数
  * @returns {Object} 推荐方案
  */
@@ -183,7 +203,17 @@ function recommendSlopeScheme(params) {
 
   let schemeKey = 'default';
 
-  // 根据边坡类型和高度推荐
+  // 根据GB 50330-2013第3.2节边坡安全等级划分
+  let slopeGrade = '三级';
+  if (slopeType === 'rock') {
+    if (slopeHeight >= 30) slopeGrade = '一级';
+    else if (slopeHeight >= 15) slopeGrade = '二级';
+  } else {
+    if (slopeHeight >= 15) slopeGrade = '一级';
+    else if (slopeHeight >= 10) slopeGrade = '二级';
+  }
+
+  // 根据边坡类型和高度推荐（参考GB 50330-2013第6章）
   if (slopeType === 'rock') {
     // 岩质边坡
     if (slopeHeight <= 10 && !hasSlidingFace) {
@@ -210,10 +240,12 @@ function recommendSlopeScheme(params) {
 
   const scheme = SLOPE_SCHEMES[schemeKey];
 
-  // 计算安全系数要求
-  let fsRequired = 1.25; // 三级边坡
-  if (slopeLevel === '一级') fsRequired = 1.35;
-  else if (slopeLevel === '二级') fsRequired = 1.30;
+  // 计算安全系数要求（根据GB 50330-2013第5.3节）
+  const level = slopeLevel || slopeGrade;
+  let fsRequired = scheme.safetyFactor.permanent;
+  if (level === '一级') fsRequired = 1.35;
+  else if (level === '二级') fsRequired = 1.30;
+  else fsRequired = 1.25;
 
   return {
     schemeName: scheme.name,
@@ -224,13 +256,15 @@ function recommendSlopeScheme(params) {
     disadvantages: scheme.disadvantages,
     designParams: scheme.designParams,
     safetyFactor: fsRequired,
+    normativeBasis: scheme.normativeBasis,
     recommendations: [
       '本推荐为初步方案，详细设计需进行工程地质勘察',
-      '建议进行稳定性计算分析，确定安全系数',
-      '施工前应编制专项施工方案',
-      '应建立边坡监测系统，定期监测'
+      '应按GB 50330-2013第5.2节采用多种方法进行稳定性分析',
+      '应按GB 50330-2013第9.1节设计完善的排水系统',
+      '应按GB 50330-2013第10.1节建立边坡监测系统',
+      '一级边坡必须进行监测，监测频率施工期1次/天'
     ],
-    consultationTip: '详细方案请联系专业设计院进行设计'
+    consultationTip: '详细方案请联系专业设计院，依据GB 50330-2013进行设计'
   };
 }
 

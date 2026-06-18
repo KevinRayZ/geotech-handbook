@@ -2,7 +2,8 @@
 
 /**
  * 基坑支护方案推荐引擎
- * 基于《基坑工程手册》和《深基坑工程设计施工手册》的工程经验构建决策树
+ * 参考规范：JGJ 120-2012《建筑基坑支护技术规程》
+ * 基于规范和工程经验构建决策树
  */
 
 /**
@@ -316,7 +317,15 @@ const recommendPitScheme = (params) => {
     alternatives: envData.alternatives,
     notes: envData.notes,
     designParams: envData.designParams,
-    warnings: []
+    warnings: [],
+    normativeBasis: 'JGJ 120-2012《建筑基坑支护技术规程》',
+    recommendations: [
+      '本推荐为初步方案，详细设计需依据JGJ 120-2012进行',
+      '应按JGJ 120-2012第3.1.3节确定基坑安全等级',
+      '应按JGJ 120-2012第4.2节进行稳定性验算',
+      '应按JGJ 120-2012第8.2节进行监测设计'
+    ],
+    consultationTip: '详细方案请联系专业设计院，依据JGJ 120-2012进行设计'
   };
 
   // 添加特殊情况警告
