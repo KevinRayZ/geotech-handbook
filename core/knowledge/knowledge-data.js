@@ -483,3 +483,15 @@ function getStatistics() {
   
   return { categories, formulas, methods, parameters };
 }
+
+module.exports = {
+  getAllKnowledge,
+  getCategoryKnowledge,
+  searchKnowledge,
+  getSafetyFactors,
+  getSoilParams,
+  getRockClassification,
+  getRockIntegrity,
+  getSoilClassification,
+  getStatistics
+};
