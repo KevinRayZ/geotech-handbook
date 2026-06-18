@@ -83,11 +83,13 @@
         </view>
         <view class="btn-content">
           <view class="btn-top">
-            <text class="btn-label">国际专家代表</text>
+            <text class="btn-label">国际专家</text>
             <t-icon name="chevron-right" size="16px" color="#3b82f6"/>
           </view>
           <text class="btn-name">Karl Terzaghi</text>
-          <text class="btn-title">现代土力学之父</text>
+          <view class="btn-title-line">
+            <text class="btn-title">现代土力学之父</text>
+          </view>
           <text class="btn-field">有效应力原理 · 固结理论</text>
         </view>
       </view>
@@ -99,11 +101,13 @@
         </view>
         <view class="btn-content">
           <view class="btn-top">
-            <text class="btn-label">国内专家代表</text>
+            <text class="btn-label">国内专家</text>
             <t-icon name="chevron-right" size="16px" color="#f59e0b"/>
           </view>
           <text class="btn-name">沈珠江</text>
-          <text class="btn-title">中国科学院院士</text>
+          <view class="btn-title-line">
+            <text class="btn-title">中国科学院院士</text>
+          </view>
           <text class="btn-field">南水模型 · 本构理论 · 数值计算</text>
         </view>
       </view>
