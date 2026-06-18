@@ -1,0 +1,119 @@
+<!--pages/expert-chat/expert-chat.wxml-->
+<view class="chat-container">
+  <!-- 专家信息头部 -->
+  <view class="expert-header">
+    <view class="expert-avatar">{{expert.avatar}}</view>
+    <view class="expert-info">
+      <view class="expert-name">{{expert.nameCN}}</view>
+      <view class="expert-title">{{expert.title}} · {{expert.era}}</view>
+    </view>
+    <view class="expert-badge {{expert.category === 'international' ? 'badge-international' : 'badge-domestic'}}">
+      {{expert.category === 'international' ? '国际专家' : '国内专家'}}
+    </view>
+  </view>
+  
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text class="disclaimer-icon">⚠️</text>
+    <text class="disclaimer-text">此为AI蒸馏的专家思维框架，非专家本人服务。回复仅供参考学习。</text>
+  </view>
+  
+  <!-- 快捷问题区 -->
+  <view class="quick-questions" wx:if="{{messages.length <= 1}}">
+    <view class="section-title">💡 快捷提问</view>
+    <view class="question-list">
+      <view 
+        class="question-item" 
+        wx:for="{{quickQuestions}}" 
+        wx:key="index"
+        bindtap="onQuickQuestion"
+        data-question="{{item}}"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+  
+  <!-- 消息列表 -->
+  <scroll-view 
+    class="message-list" 
+    scroll-y 
+    scroll-into-view="{{scrollToMessage}}"
+    scroll-with-animation
+  >
+    <!-- 欢迎消息 -->
+    <view class="message assistant-message" id="msg-welcome">
+      <view class="message-avatar">{{expert.avatar}}</view>
+      <view class="message-content">
+        <view class="message-text">你好！我是{{expert.nameCN}}。
+
+{{expert.beliefs[0]}}
+
+有什么土力学或岩土工程问题想要讨论吗？</view>
+        <view class="message-time">{{welcomeTime}}</view>
+      </view>
+    </view>
+    
+    <!-- 动态消息 -->
+    <view 
+      class="message {{item.role === 'user' ? 'user-message' : 'assistant-message'}}"
+      wx:for="{{messages}}" 
+      wx:key="id"
+      id="msg-{{item.id}}"
+    >
+      <view class="message-avatar" wx:if="{{item.role === 'assistant'}}">{{expert.avatar}}</view>
+      <view class="message-content">
+        <view class="message-text">{{item.content}}</view>
+        <view class="message-time">{{item.time}}</view>
+        <!-- AI消息的操作按钮 -->
+        <view class="message-actions" wx:if="{{item.role === 'assistant'}}">
+          <view class="action-btn" bindtap="onCopyMessage" data-content="{{item.content}}">
+            📋 复制
+          </view>
+        </view>
+      </view>
+      <view class="message-avatar user-avatar" wx:if="{{item.role === 'user'}}">👤</view>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view class="message assistant-message" wx:if="{{isLoading}}">
+      <view class="message-avatar">{{expert.avatar}}</view>
+      <view class="message-content">
+        <view class="message-text loading-text">
+          <view class="loading-dots">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+          <text>{{expert.nameCN}}正在思考...</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 底部占位 -->
+    <view class="bottom-placeholder" id="msg-bottom"></view>
+  </scroll-view>
+  
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <view class="input-wrapper">
+      <textarea 
+        class="input-field"
+        placeholder="向{{expert.nameCN}}提问..."
+        value="{{inputValue}}"
+        bindinput="onInput"
+        bindconfirm="onSend"
+        confirm-type="send"
+        auto-height
+        maxlength="500"
+        disabled="{{isLoading}}"
+      />
+      <view 
+        class="send-btn {{inputValue.trim() ? 'active' : ''}}"
+        bindtap="onSend"
+      >
+        发送
+      </view>
+    </view>
+  </view>
+</view>

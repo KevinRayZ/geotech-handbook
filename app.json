@@ -5,6 +5,7 @@
     "pages/search/search",
     "pages/advisor/advisor",
     "pages/expert-consult/expert-consult",
+    "pages/expert-chat/expert-chat",
     "pages/consultation/consultation",
     "pages/profile/profile",
     "pages/test/test"

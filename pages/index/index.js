@@ -1,5 +1,6 @@
 // pages/index/index.js
 const { getStatistics, searchKnowledge } = require('../../core/knowledge/index');
+const { getExpertsByCategory, getAllExperts } = require('../../core/experts/expert-data');
 
 const app = getApp();
 
@@ -59,7 +60,40 @@ Page({
   },
 
   /**
-   * 跳转到AI专家咨询
+   * 跳转到专家对话页面
+   * 根据选择的分类（国际/国内）显示对应专家列表，或直接进入第一个专家
+   */
+  goExpertChat(e) {
+    const { category } = e.currentTarget.dataset;
+    const experts = getExpertsByCategory(category);
+    
+    if (experts.length === 0) {
+      wx.showToast({ title: '暂无该分类专家', icon: 'none' });
+      return;
+    }
+    
+    // 如果只有一个专家，直接进入对话
+    if (experts.length === 1) {
+      wx.navigateTo({
+        url: `/pages/expert-chat/expert-chat?expertId=${experts[0].id}`
+      });
+      return;
+    }
+    
+    // 多个专家时，显示选择菜单
+    wx.showActionSheet({
+      itemList: experts.map(e => `${e.nameCN} - ${e.title}`),
+      success: (res) => {
+        const selectedExpert = experts[res.tapIndex];
+        wx.navigateTo({
+          url: `/pages/expert-chat/expert-chat?expertId=${selectedExpert.id}`
+        });
+      }
+    });
+  },
+
+  /**
+   * 跳转到AI专家咨询（专家列表页）
    */
   goExpertConsult() {
     wx.navigateTo({
