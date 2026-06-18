@@ -1,0 +1,123 @@
+<!--pages/expert-consult/expert-consult.wxml-->
+<view class="expert-page">
+  <!-- 顶部说明 -->
+  <view class="disclaimer-banner">
+    <t-icon name="info-circle" size="20px" color="#e37318"/>
+    <view class="disclaimer-content">
+      <text class="disclaimer-title">AI蒸馏专家服务说明</text>
+      <text class="disclaimer-text">本服务基于AI技术蒸馏专家的思维框架和工程经验，提供参考建议。并非专家本人服务，仅供参考，不替代专业工程咨询。</text>
+    </view>
+  </view>
+
+  <!-- 专家列表 -->
+  <view class="section">
+    <view class="section-title">可用专家</view>
+    <view class="expert-list">
+      <view
+        class="expert-card"
+        wx:for="{{experts}}"
+        wx:key="id"
+        data-expert="{{item}}"
+        bind:tap="onExpertTap"
+      >
+        <view class="expert-header">
+          <view class="expert-avatar">
+            <t-icon name="user" size="32px" color="#0052d9"/>
+          </view>
+          <view class="expert-basic">
+            <view class="expert-name">{{item.name}}</view>
+            <view class="expert-title">{{item.title}}</view>
+          </view>
+          <t-tag size="small" theme="success" variant="light">免费</t-tag>
+        </view>
+        <view class="expert-desc">{{item.description}}</view>
+        <view class="expert-specialties">
+          <t-tag
+            size="small"
+            variant="outline"
+            wx:for="{{item.specialties}}"
+            wx:for-item="spec"
+            wx:key="*this"
+          >{{spec}}</t-tag>
+        </view>
+        <view class="expert-models">
+          <view class="model-title">核心思维模型：</view>
+          <view class="model-list">
+            <view
+              class="model-item"
+              wx:for="{{item.mentalModels}}"
+              wx:for-item="model"
+              wx:key="name"
+            >
+              <t-icon name="check-circle-filled" size="14px" color="#07a35a"/>
+              <text>{{model.name}}：{{model.summary}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 使用方式 -->
+  <view class="section">
+    <view class="section-title">如何使用</view>
+    <view class="usage-list">
+      <view class="usage-item">
+        <view class="usage-step">1</view>
+        <view class="usage-content">
+          <view class="usage-title">选择专家</view>
+          <view class="usage-desc">根据问题类型选择合适的专家</view>
+        </view>
+      </view>
+      <view class="usage-item">
+        <view class="usage-step">2</view>
+        <view class="usage-content">
+          <view class="usage-title">描述问题</view>
+          <view class="usage-desc">详细描述您的工程问题和现场条件</view>
+        </view>
+      </view>
+      <view class="usage-item">
+        <view class="usage-step">3</view>
+        <view class="usage-content">
+          <view class="usage-title">获取建议</view>
+          <view class="usage-desc">AI将以专家思维框架提供分析和建议</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务特点 -->
+  <view class="section">
+    <view class="section-title">服务特点</view>
+    <view class="feature-list">
+      <view class="feature-item">
+        <t-icon name="ai" size="24px" color="#8b5cf6"/>
+        <view class="feature-content">
+          <view class="feature-title">AI蒸馏技术</view>
+          <view class="feature-desc">基于专家公开著作、讲座、论文深度学习</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <t-icon name="free-icon" size="24px" color="#07a35a"/>
+        <view class="feature-content">
+          <view class="feature-title">免费使用</view>
+          <view class="feature-desc">基础咨询服务免费，降低学习门槛</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <t-icon name="time" size="24px" color="#0052d9"/>
+        <view class="feature-content">
+          <view class="feature-title">随时可用</view>
+          <view class="feature-desc">7×24小时在线，不受时间和地域限制</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 开始咨询按钮 -->
+  <view class="bottom-bar">
+    <t-button theme="primary" size="large" block bind:tap="startConsult">
+      开始AI专家咨询
+    </t-button>
+  </view>
+</view>

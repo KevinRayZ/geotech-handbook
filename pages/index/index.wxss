@@ -164,6 +164,99 @@
   background: #e8e8e8;
 }
 
+/* AI专家咨询入口 */
+.expert-banner {
+  margin: 20rpx;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 2rpx solid #0052d9;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 82, 217, 0.15);
+}
+
+.expert-banner-left {
+  flex-shrink: 0;
+}
+
+.expert-avatar-group {
+  display: flex;
+}
+
+.avatar-item {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid #fff;
+}
+
+.expert-banner-center {
+  flex: 1;
+}
+
+.expert-banner-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.expert-banner-title text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.expert-banner-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.expert-banner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+/* 专项方案咨询入口 */
+.consultation-banner {
+  margin: 20rpx;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 2rpx solid #e37318;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(227, 115, 24, 0.15);
+}
+
+.banner-left {
+  flex-shrink: 0;
+}
+
+.banner-center {
+  flex: 1;
+}
+
+.banner-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.banner-desc {
+  font-size: 24rpx;
+  color: #666;
+}
+
 /* 知识分类 */
 .category-section {
   margin: 20rpx;

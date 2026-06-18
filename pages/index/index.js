@@ -59,6 +59,15 @@ Page({
   },
 
   /**
+   * 跳转到AI专家咨询
+   */
+  goExpertConsult() {
+    wx.navigateTo({
+      url: '/pages/expert-consult/expert-consult'
+    });
+  },
+
+  /**
    * 跳转到专项咨询
    */
   goConsultation() {

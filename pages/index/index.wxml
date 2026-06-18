@@ -60,7 +60,30 @@
     </view>
   </view>
 
-  <!-- 专项咨询入口 -->
+  <!-- AI专家咨询入口 -->
+  <view class="expert-banner" bind:tap="goExpertConsult">
+    <view class="expert-banner-left">
+      <view class="expert-avatar-group">
+        <view class="avatar-item" style="background: #0052d9;">
+          <t-icon name="user" size="16px" color="#fff"/>
+        </view>
+      </view>
+    </view>
+    <view class="expert-banner-center">
+      <view class="expert-banner-title">
+        <text>AI专家咨询</text>
+        <t-tag size="small" theme="success" variant="light">免费</t-tag>
+      </view>
+      <view class="expert-banner-desc">AI蒸馏专家思维框架 · 非专家本人服务</view>
+      <view class="expert-banner-tags">
+        <t-tag size="small" variant="outline">成永刚-边坡诊断</t-tag>
+        <t-tag size="small" variant="outline">更多专家接入中</t-tag>
+      </view>
+    </view>
+    <t-icon name="chevron-right" size="24px" color="#999"/>
+  </view>
+
+  <!-- 专项方案咨询入口 -->
   <view class="consultation-banner" bind:tap="goConsultation">
     <view class="banner-left">
       <t-icon name="service" size="32px" color="#e37318"/>
