@@ -51,30 +51,6 @@
     </view>
   </view>
 
-  <!-- 专家团队 -->
-  <view class="section">
-    <view class="section-title">专家团队</view>
-    <view class="expert-card">
-      <view class="expert-avatar">
-        <t-icon name="user" size="40px" color="#0052d9"/>
-      </view>
-      <view class="expert-info">
-        <view class="expert-name">成永刚</view>
-        <view class="expert-title">岩土工程总工 · 四川城乡发展设计公司</view>
-        <view class="expert-desc">20多年岩土工程经验，千余处地质病害经历</view>
-        <view class="expert-tags">
-          <t-tag size="small" theme="primary">边坡病害</t-tag>
-          <t-tag size="small" theme="primary">滑坡治理</t-tag>
-          <t-tag size="small" theme="primary">方案审查</t-tag>
-        </view>
-      </view>
-    </view>
-    <view class="expert-hint">
-      <t-icon name="info-circle" size="16px" color="#999"/>
-      <text>更多专家持续接入中...</text>
-    </view>
-  </view>
-
   <!-- 联系方式 -->
   <view class="section contact-section">
     <view class="section-title">联系我们</view>

@@ -46,7 +46,11 @@ Page({
     }));
     
     const process = getConsultationProcess();
-    const contact = getContactInfo();
+    const contact = {
+      phone: '15368855434',
+      wechat: 'rayz1000',
+      workHours: '周一至周五 9:00-18:00'
+    };
     
     this.setData({ services, process, contact });
   },
