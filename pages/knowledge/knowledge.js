@@ -17,7 +17,9 @@ Page({
       { id: 'pit', name: '基坑工程', icon: 'building-1', color: '#0052d9' },
       { id: 'slope', name: '边坡工程', icon: 'chart', color: '#e37318' },
       { id: 'deepPit', name: '深基坑', icon: 'layers', color: '#8b5cf6' },
-      { id: 'foundation', name: '地基处理', icon: 'root', color: '#d54941' }
+      { id: 'foundation', name: '地基处理', icon: 'root', color: '#d54941' },
+      { id: 'retainingWall', name: '挡土墙', icon: 'shelter', color: '#0891b2' },
+      { id: 'foundationDesign', name: '地基基础', icon: 'home', color: '#ca8a04' }
     ],
     
     // 内容

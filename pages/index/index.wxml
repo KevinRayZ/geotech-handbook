@@ -152,7 +152,7 @@
         </view>
         <view class="category-info">
           <view class="category-name">工程地质</view>
-          <view class="category-count">物理性质 · 稠度指标 · 试验方法</view>
+          <view class="category-count">物理性质 · 抗剪强度 · 固结渗透</view>
         </view>
         <t-icon name="chevron-right" size="20px" color="#ccc"/>
       </view>
@@ -163,7 +163,7 @@
         </view>
         <view class="category-info">
           <view class="category-name">基坑工程</view>
-          <view class="category-count">土压力 · 稳定性 · 支护工法</view>
+          <view class="category-count">土压力 · 稳定性验算 · 支护工法</view>
         </view>
         <t-icon name="chevron-right" size="20px" color="#ccc"/>
       </view>
@@ -174,7 +174,7 @@
         </view>
         <view class="category-info">
           <view class="category-name">边坡工程</view>
-          <view class="category-count">稳定性分析 · 支护设计 · 排水</view>
+          <view class="category-count">稳定性分析 · 抗滑桩 · 排水</view>
         </view>
         <t-icon name="chevron-right" size="20px" color="#ccc"/>
       </view>
@@ -196,7 +196,29 @@
         </view>
         <view class="category-info">
           <view class="category-name">地基处理</view>
-          <view class="category-count">复合地基 · CFG桩 · 强夯</view>
+          <view class="category-count">复合地基 · CFG桩 · 强夯预压</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #0891b220; color: #0891b2;">
+          <t-icon name="shelter" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">挡土墙</view>
+          <view class="category-count">重力式 · 悬臂式 · 加筋土</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #ca8a0420; color: #ca8a04;">
+          <t-icon name="home" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">地基基础</view>
+          <view class="category-count">承载力修正 · 沉降计算 · 桩基</view>
         </view>
         <t-icon name="chevron-right" size="20px" color="#ccc"/>
       </view>
