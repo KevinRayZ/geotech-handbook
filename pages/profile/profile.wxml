@@ -1,93 +1,236 @@
 <!-- pages/profile/profile.wxml -->
 <view class="container">
-  <!-- 用户信息 -->
-  <view class="user-section card">
-    <view class="user-info">
-      <t-avatar 
-        size="120rpx" 
-        image="{{userInfo.avatarUrl || '/assets/icons/default-avatar.png'}}"
-        t-class="user-avatar"
-      />
-      <view class="user-detail">
-        <view class="user-name">{{userInfo.nickName || '岩土工程师'}}</view>
-        <view class="user-desc">专业岩土工程计算工具</view>
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-bg"></view>
+    <view class="user-content">
+      <!-- 未登录状态 -->
+      <view class="login-section" wx:if="{{!isLoggedIn}}">
+        <view class="login-avatar">
+          <t-icon name="user" size="48px" color="#fff"/>
+        </view>
+        <view class="login-text">点击登录</view>
+        <button class="login-btn" bind:tap="onLogin">微信登录</button>
+      </view>
+      
+      <!-- 已登录状态 -->
+      <view class="logged-section" wx:else>
+        <image class="user-avatar" src="{{userInfo.avatarUrl || '/assets/icons/default-avatar.png'}}" mode="aspectFill"/>
+        <view class="user-info">
+          <view class="user-name">{{userInfo.nickName || '岩土工程师'}}</view>
+          <view class="user-company">{{userDetail.company || '未填写单位'}}</view>
+          <view class="user-position">{{userDetail.position || '未填写职位'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-card" wx:if="{{isLoggedIn}}">
+    <view class="stat-item">
+      <view class="stat-value">{{projectCount}}</view>
+      <view class="stat-label">我的项目</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-value">{{historyCount}}</view>
+      <view class="stat-label">查询记录</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-value">{{favoriteCount}}</view>
+      <view class="stat-label">我的收藏</view>
+    </view>
+  </view>
+
+  <!-- 用户信息编辑 -->
+  <view class="section-card" wx:if="{{isLoggedIn}}">
+    <view class="section-header">
+      <view class="section-title">个人信息</view>
+      <view class="section-action" bind:tap="{{isEditing ? 'saveEdit' : 'startEdit'}}">
+        {{isEditing ? '保存' : '编辑'}}
+      </view>
+      <view class="section-action cancel" wx:if="{{isEditing}}" bind:tap="cancelEdit">取消</view>
+    </view>
+    
+    <view class="info-list">
+      <view class="info-item">
+        <view class="info-label">单位</view>
+        <input 
+          wx:if="{{isEditing}}"
+          class="info-input"
+          value="{{userDetail.company}}"
+          placeholder="请输入单位名称"
+          bindinput="onInputChange"
+          data-field="company"
+        />
+        <view class="info-value" wx:else>{{userDetail.company || '未填写'}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">职位</view>
+        <input 
+          wx:if="{{isEditing}}"
+          class="info-input"
+          value="{{userDetail.position}}"
+          placeholder="请输入职位"
+          bindinput="onInputChange"
+          data-field="position"
+        />
+        <view class="info-value" wx:else>{{userDetail.position || '未填写'}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">电话</view>
+        <input 
+          wx:if="{{isEditing}}"
+          class="info-input"
+          type="number"
+          value="{{userDetail.phone}}"
+          placeholder="请输入联系电话"
+          bindinput="onInputChange"
+          data-field="phone"
+        />
+        <view class="info-value" wx:else>{{userDetail.phone || '未填写'}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">邮箱</view>
+        <input 
+          wx:if="{{isEditing}}"
+          class="info-input"
+          type="text"
+          value="{{userDetail.email}}"
+          placeholder="请输入邮箱地址"
+          bindinput="onInputChange"
+          data-field="email"
+        />
+        <view class="info-value" wx:else>{{userDetail.email || '未填写'}}</view>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-label">专长</view>
+        <picker wx:if="{{isEditing}}" value="{{userDetail.specialty}}" bindchange="onSpecialtyChange" range="{{['基坑工程', '边坡工程', '地基处理', '隧道工程', '勘察设计', '其他']}}">
+          <view class="info-input picker">{{userDetail.specialty || '请选择专长'}}</view>
+        </picker>
+        <view class="info-value" wx:else>{{userDetail.specialty || '未填写'}}</view>
       </view>
     </view>
   </view>
 
   <!-- 功能列表 -->
-  <view class="menu-section">
-    <!-- 我的项目 -->
-    <view class="menu-group card">
-      <t-cell 
-        title="我的项目" 
-        note="{{projectCount}}个项目"
-        arrow
-        bind:tap="goProjects"
-      >
-        <t-icon name="folder" slot="left-icon" size="40rpx" color="#0052D9" />
-      </t-cell>
-      <t-cell 
-        title="计算历史" 
-        note="{{historyCount}}条记录"
-        arrow
-        bind:tap="goHistory"
-      >
-        <t-icon name="time" slot="left-icon" size="40rpx" color="#00A870" />
-      </t-cell>
-      <t-cell 
-        title="我的收藏" 
-        note="{{favoriteCount}}个收藏"
-        arrow
-        bind:tap="goFavorites"
-      >
-        <t-icon name="heart" slot="left-icon" size="40rpx" color="#E34D59" />
-      </t-cell>
+  <view class="section-card">
+    <view class="section-title">我的数据</view>
+    <view class="menu-list">
+      <view class="menu-item" bind:tap="goProjects">
+        <view class="menu-icon" style="background: #e3f2fd; color: #1976d2;">
+          <t-icon name="folder" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">我的项目</view>
+          <view class="menu-note">{{projectCount}}个项目</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="goHistory">
+        <view class="menu-icon" style="background: #e8f5e9; color: #388e3c;">
+          <t-icon name="time" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">查询历史</view>
+          <view class="menu-note">{{historyCount}}条记录</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="goFavorites">
+        <view class="menu-icon" style="background: #fce4ec; color: #c62828;">
+          <t-icon name="heart" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">我的收藏</view>
+          <view class="menu-note">{{favoriteCount}}个收藏</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
     </view>
+  </view>
 
-    <!-- 工具与设置 -->
-    <view class="menu-group card">
-      <t-cell 
-        title="单位换算" 
-        arrow
-        bind:tap="goUnitConvert"
-      >
-        <t-icon name="swap" slot="left-icon" size="40rpx" color="#7B61FF" />
-      </t-cell>
-      <t-cell 
-        title="规范速查" 
-        arrow
-        bind:tap="goSpecCodes"
-      >
-        <t-icon name="book" slot="left-icon" size="40rpx" color="#ED7B2F" />
-      </t-cell>
-      <t-cell 
-        title="使用帮助" 
-        arrow
-        bind:tap="goHelp"
-      >
-        <t-icon name="help-circle" slot="left-icon" size="40rpx" color="#639922" />
-      </t-cell>
+  <view class="section-card">
+    <view class="section-title">工具</view>
+    <view class="menu-list">
+      <view class="menu-item" bind:tap="goUnitConvert">
+        <view class="menu-icon" style="background: #f3e5f5; color: #7b1fa2;">
+          <t-icon name="swap" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">单位换算</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="goSpecCodes">
+        <view class="menu-icon" style="background: #fff3e0; color: #e65100;">
+          <t-icon name="book" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">规范速查</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
     </view>
+  </view>
 
-    <!-- 关于 -->
-    <view class="menu-group card">
-      <t-cell 
-        title="意见反馈" 
-        arrow
-        bind:tap="goFeedback"
-      >
-        <t-icon name="chat" slot="left-icon" size="40rpx" color="#0052D9" />
-      </t-cell>
-      <t-cell 
-        title="关于我们" 
-        note="v{{version}}"
-        arrow
-        bind:tap="goAbout"
-      >
-        <t-icon name="info-circle" slot="left-icon" size="40rpx" color="#666" />
-      </t-cell>
+  <view class="section-card">
+    <view class="section-title">设置</view>
+    <view class="menu-list">
+      <view class="menu-item" bind:tap="goHelp">
+        <view class="menu-icon" style="background: #e0f7fa; color: #00838f;">
+          <t-icon name="help-circle" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">使用帮助</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="goFeedback">
+        <view class="menu-icon" style="background: #e8eaf6; color: #283593;">
+          <t-icon name="chat" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">意见反馈</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="clearCache">
+        <view class="menu-icon" style="background: #fafafa; color: #616161;">
+          <t-icon name="delete" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">清除缓存</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
+      
+      <view class="menu-item" bind:tap="goAbout">
+        <view class="menu-icon" style="background: #fafafa; color: #616161;">
+          <t-icon name="info-circle" size="20px"/>
+        </view>
+        <view class="menu-content">
+          <view class="menu-name">关于我们</view>
+          <view class="menu-note">v{{version}}</view>
+        </view>
+        <t-icon name="chevron-right" size="16px" color="#999"/>
+      </view>
     </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-section" wx:if="{{isLoggedIn}}">
+    <button class="logout-btn" bind:tap="onLogout">退出登录</button>
   </view>
 
   <!-- 底部信息 -->
