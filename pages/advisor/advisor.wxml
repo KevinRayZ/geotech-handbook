@@ -1,195 +1,444 @@
 <!-- pages/advisor/advisor.wxml -->
 <view class="container">
+  <!-- 顶部说明 -->
+  <view class="notice-banner">
+    <t-icon name="info-circle" size="16px" color="#e37318"/>
+    <text class="notice-text">本模块为初步方案推荐，详细方案请联系专业设计院</text>
+  </view>
+
   <!-- 工程类型选择 -->
   <view class="type-section card">
     <view class="section-title">选择工程类型</view>
-    <t-grid column="{{3}}" border="{{false}}">
-      <t-grid-item 
-        text="基坑支护" 
-        image="/assets/icons/pit.png" 
+    <view class="type-grid">
+      <view 
+        class="type-item {{selectedType === 'pit' ? 'selected' : ''}}" 
         bind:tap="selectType" 
         data-type="pit"
-        t-class="{{selectedType === 'pit' ? 'selected-type' : ''}}"
-      />
-      <t-grid-item 
-        text="边坡治理" 
-        image="/assets/icons/slope.png" 
+      >
+        <view class="type-icon" style="background: #0052d9;">🏗️</view>
+        <text class="type-name">基坑支护</text>
+      </view>
+      <view 
+        class="type-item {{selectedType === 'slope' ? 'selected' : ''}}" 
         bind:tap="selectType" 
         data-type="slope"
-        t-class="{{selectedType === 'slope' ? 'selected-type' : ''}}"
-      />
-      <t-grid-item 
-        text="地基处理" 
-        image="/assets/icons/foundation.png" 
+      >
+        <view class="type-icon" style="background: #e37318;">⛰️</view>
+        <text class="type-name">边坡治理</text>
+      </view>
+      <view 
+        class="type-item {{selectedType === 'foundation' ? 'selected' : ''}}" 
         bind:tap="selectType" 
         data-type="foundation"
-        t-class="{{selectedType === 'foundation' ? 'selected-type' : ''}}"
-      />
-    </t-grid>
+      >
+        <view class="type-icon" style="background: #d54941;">🏠</view>
+        <text class="type-name">地基处理</text>
+      </view>
+    </view>
   </view>
 
-  <!-- 基坑方案参数输入 -->
+  <!-- ========== 基坑方案参数输入 ========== -->
   <view class="params-section card" wx:if="{{selectedType === 'pit'}}">
-    <view class="section-title">工程参数</view>
+    <view class="section-title">基坑工程参数</view>
     
     <view class="form-group">
       <view class="form-item">
         <view class="form-label">开挖深度 (m) *</view>
-        <t-input 
+        <input 
           type="digit" 
           value="{{params.depth}}" 
           placeholder="请输入开挖深度"
-          bind:change="onInputChange"
+          bindinput="onInputChange"
           data-key="depth"
+          class="form-input"
         />
       </view>
 
       <view class="form-item">
         <view class="form-label">土质条件 *</view>
-        <t-radio-group value="{{params.soilType}}" bind:change="onSoilTypeChange" t-class="radio-group">
-          <t-radio value="clay" label="黏性土" t-class="radio-item" />
-          <t-radio value="sand" label="砂土" t-class="radio-item" />
-          <t-radio value="softSoil" label="软土/淤泥" t-class="radio-item" />
-        </t-radio-group>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{params.soilType === 'clay' ? 'selected' : ''}}" 
+            bind:tap="onSoilTypeChange" 
+            data-value="clay"
+          >黏性土</view>
+          <view 
+            class="radio-item {{params.soilType === 'sand' ? 'selected' : ''}}" 
+            bind:tap="onSoilTypeChange" 
+            data-value="sand"
+          >砂土</view>
+          <view 
+            class="radio-item {{params.soilType === 'softSoil' ? 'selected' : ''}}" 
+            bind:tap="onSoilTypeChange" 
+            data-value="softSoil"
+          >软土/淤泥</view>
+        </view>
       </view>
 
       <view class="form-item">
         <view class="form-label">地下水位深度 (m)</view>
-        <t-input 
+        <input 
           type="digit" 
           value="{{params.waterLevel}}" 
           placeholder="距地表深度，无水可不填"
-          bind:change="onInputChange"
+          bindinput="onInputChange"
           data-key="waterLevel"
+          class="form-input"
         />
       </view>
 
       <view class="form-item">
         <view class="form-label">周边环境 *</view>
-        <t-radio-group value="{{params.environment}}" bind:change="onEnvChange" t-class="radio-group">
-          <t-radio value="relaxed" label="宽松（无建筑物）" t-class="radio-item" />
-          <t-radio value="normal" label="一般（有建筑物）" t-class="radio-item" />
-          <t-radio value="strict" label="严格（重要建筑物）" t-class="radio-item" />
-        </t-radio-group>
-      </view>
-
-      <view class="form-item">
-        <view class="form-label">地面超载 (kPa)</view>
-        <t-input 
-          type="digit" 
-          value="{{params.surcharge}}" 
-          placeholder="默认10kPa"
-          bind:change="onInputChange"
-          data-key="surcharge"
-        />
+        <view class="radio-group">
+          <view 
+            class="radio-item {{params.environment === 'relaxed' ? 'selected' : ''}}" 
+            bind:tap="onEnvChange" 
+            data-value="relaxed"
+          >宽松</view>
+          <view 
+            class="radio-item {{params.environment === 'normal' ? 'selected' : ''}}" 
+            bind:tap="onEnvChange" 
+            data-value="normal"
+          >一般</view>
+          <view 
+            class="radio-item {{params.environment === 'strict' ? 'selected' : ''}}" 
+            bind:tap="onEnvChange" 
+            data-value="strict"
+          >严格</view>
+        </view>
       </view>
 
       <view class="form-item">
         <view class="form-label">基坑安全等级</view>
-        <t-radio-group value="{{params.pitLevel}}" bind:change="onPitLevelChange" t-class="radio-group">
-          <t-radio value="一级" label="一级" t-class="radio-item" />
-          <t-radio value="二级" label="二级" t-class="radio-item" />
-          <t-radio value="三级" label="三级" t-class="radio-item" />
-        </t-radio-group>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{params.pitLevel === '一级' ? 'selected' : ''}}" 
+            bind:tap="onPitLevelChange" 
+            data-value="一级"
+          >一级</view>
+          <view 
+            class="radio-item {{params.pitLevel === '二级' ? 'selected' : ''}}" 
+            bind:tap="onPitLevelChange" 
+            data-value="二级"
+          >二级</view>
+          <view 
+            class="radio-item {{params.pitLevel === '三级' ? 'selected' : ''}}" 
+            bind:tap="onPitLevelChange" 
+            data-value="三级"
+          >三级</view>
+        </view>
       </view>
     </view>
   </view>
 
-  <!-- 边坡方案参数输入 -->
+  <!-- ========== 边坡方案参数输入 ========== -->
   <view class="params-section card" wx:if="{{selectedType === 'slope'}}">
-    <view class="section-title">工程参数</view>
-    <view class="coming-soon">
-      <t-icon name="time" size="80rpx" color="#999" />
-      <view class="coming-text">边坡方案推荐功能即将上线</view>
-      <view class="coming-desc">v1.1版本将支持边坡治理方案推荐</view>
+    <view class="section-title">边坡工程参数</view>
+    
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-label">边坡高度 (m) *</view>
+        <input 
+          type="digit" 
+          value="{{slopeParams.slopeHeight}}" 
+          placeholder="请输入边坡高度"
+          bindinput="onSlopeInputChange"
+          data-key="slopeHeight"
+          class="form-input"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">边坡类型 *</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{slopeParams.slopeType === 'rock' ? 'selected' : ''}}" 
+            bind:tap="onSlopeTypeChange" 
+            data-value="rock"
+          >岩质边坡</view>
+          <view 
+            class="radio-item {{slopeParams.slopeType === 'soil' ? 'selected' : ''}}" 
+            bind:tap="onSlopeTypeChange" 
+            data-value="soil"
+          >土质边坡</view>
+        </view>
+      </view>
+
+      <!-- 岩质边坡选项 -->
+      <view class="form-item" wx:if="{{slopeParams.slopeType === 'rock'}}">
+        <view class="form-label">岩石类型</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{slopeParams.rockType === 'hard' ? 'selected' : ''}}" 
+            bind:tap="onRockTypeChange" 
+            data-value="hard"
+          >硬质岩</view>
+          <view 
+            class="radio-item {{slopeParams.rockType === 'medium' ? 'selected' : ''}}" 
+            bind:tap="onRockTypeChange" 
+            data-value="medium"
+          >中硬岩</view>
+          <view 
+            class="radio-item {{slopeParams.rockType === 'soft' ? 'selected' : ''}}" 
+            bind:tap="onRockTypeChange" 
+            data-value="soft"
+          >软质岩</view>
+        </view>
+      </view>
+
+      <!-- 土质边坡选项 -->
+      <view class="form-item" wx:if="{{slopeParams.slopeType === 'soil'}}">
+        <view class="form-label">土质类型</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{slopeParams.soilType === 'clay' ? 'selected' : ''}}" 
+            bind:tap="onSlopeSoilTypeChange" 
+            data-value="clay"
+          >黏性土</view>
+          <view 
+            class="radio-item {{slopeParams.soilType === 'sand' ? 'selected' : ''}}" 
+            bind:tap="onSlopeSoilTypeChange" 
+            data-value="sand"
+          >砂土</view>
+          <view 
+            class="radio-item {{slopeParams.soilType === 'loess' ? 'selected' : ''}}" 
+            bind:tap="onSlopeSoilTypeChange" 
+            data-value="loess"
+          >黄土</view>
+          <view 
+            class="radio-item {{slopeParams.soilType === 'expansive' ? 'selected' : ''}}" 
+            bind:tap="onSlopeSoilTypeChange" 
+            data-value="expansive"
+          >膨胀土</view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">是否有滑动面</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{slopeParams.hasSlidingFace === 'no' ? 'selected' : ''}}" 
+            bind:tap="onSlidingFaceChange" 
+            data-value="no"
+          >无</view>
+          <view 
+            class="radio-item {{slopeParams.hasSlidingFace === 'yes' ? 'selected' : ''}}" 
+            bind:tap="onSlidingFaceChange" 
+            data-value="yes"
+          >有</view>
+        </view>
+      </view>
+
+      <view class="form-item" wx:if="{{slopeParams.hasSlidingFace === 'yes'}}">
+        <view class="form-label">滑动面深度 (m)</view>
+        <input 
+          type="digit" 
+          value="{{slopeParams.slidingDepth}}" 
+          placeholder="请输入滑动面深度"
+          bindinput="onSlopeInputChange"
+          data-key="slidingDepth"
+          class="form-input"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">边坡等级</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{slopeParams.slopeLevel === '一级' ? 'selected' : ''}}" 
+            bind:tap="onSlopeLevelChange" 
+            data-value="一级"
+          >一级</view>
+          <view 
+            class="radio-item {{slopeParams.slopeLevel === '二级' ? 'selected' : ''}}" 
+            bind:tap="onSlopeLevelChange" 
+            data-value="二级"
+          >二级</view>
+          <view 
+            class="radio-item {{slopeParams.slopeLevel === '三级' ? 'selected' : ''}}" 
+            bind:tap="onSlopeLevelChange" 
+            data-value="三级"
+          >三级</view>
+        </view>
+      </view>
     </view>
   </view>
 
-  <!-- 地基处理方案参数输入 -->
+  <!-- ========== 地基处理参数输入 ========== -->
   <view class="params-section card" wx:if="{{selectedType === 'foundation'}}">
-    <view class="section-title">工程参数</view>
-    <view class="coming-soon">
-      <t-icon name="time" size="80rpx" color="#999" />
-      <view class="coming-text">地基处理方案推荐功能即将上线</view>
-      <view class="coming-desc">v1.2版本将支持地基处理方案推荐</view>
+    <view class="section-title">地基处理参数</view>
+    
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-label">处理深度 (m) *</view>
+        <input 
+          type="digit" 
+          value="{{treatmentParams.treatmentDepth}}" 
+          placeholder="请输入处理深度"
+          bindinput="onTreatmentInputChange"
+          data-key="treatmentDepth"
+          class="form-input"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">土质类型 *</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{treatmentParams.soilType === 'softClay' ? 'selected' : ''}}" 
+            bind:tap="onTreatmentSoilTypeChange" 
+            data-value="softClay"
+          >软土/淤泥</view>
+          <view 
+            class="radio-item {{treatmentParams.soilType === 'clay' ? 'selected' : ''}}" 
+            bind:tap="onTreatmentSoilTypeChange" 
+            data-value="clay"
+          >黏性土</view>
+          <view 
+            class="radio-item {{treatmentParams.soilType === 'silt' ? 'selected' : ''}}" 
+            bind:tap="onTreatmentSoilTypeChange" 
+            data-value="silt"
+          >粉土</view>
+          <view 
+            class="radio-item {{treatmentParams.soilType === 'sand' ? 'selected' : ''}}" 
+            bind:tap="onTreatmentSoilTypeChange" 
+            data-value="sand"
+          >砂土</view>
+          <view 
+            class="radio-item {{treatmentParams.soilType === 'fill' ? 'selected' : ''}}" 
+            bind:tap="onTreatmentSoilTypeChange" 
+            data-value="fill"
+          >填土</view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">要求承载力 (kPa)</view>
+        <input 
+          type="digit" 
+          value="{{treatmentParams.bearingCapacity}}" 
+          placeholder="目标承载力特征值"
+          bindinput="onTreatmentInputChange"
+          data-key="bearingCapacity"
+          class="form-input"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">是否湿陷性黄土</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{treatmentParams.isCollapsible === 'no' ? 'selected' : ''}}" 
+            bind:tap="onCollapsibleChange" 
+            data-value="no"
+          >否</view>
+          <view 
+            class="radio-item {{treatmentParams.isCollapsible === 'yes' ? 'selected' : ''}}" 
+            bind:tap="onCollapsibleChange" 
+            data-value="yes"
+          >是</view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">工期是否充足</view>
+        <view class="radio-group">
+          <view 
+            class="radio-item {{treatmentParams.hasTime === 'no' ? 'selected' : ''}}" 
+            bind:tap="onHasTimeChange" 
+            data-value="no"
+          >工期紧张</view>
+          <view 
+            class="radio-item {{treatmentParams.hasTime === 'yes' ? 'selected' : ''}}" 
+            bind:tap="onHasTimeChange" 
+            data-value="yes"
+          >工期充足</view>
+        </view>
+      </view>
     </view>
   </view>
 
   <!-- 推荐按钮 -->
-  <view class="action-section" wx:if="{{selectedType === 'pit'}}">
-    <t-button 
-      theme="primary" 
-      size="large" 
-      block 
+  <view class="action-section">
+    <button 
+      class="recommend-btn {{canRecommend ? '' : 'disabled'}}" 
       bind:tap="onRecommend"
-      loading="{{loading}}"
-      disabled="{{!canRecommend}}"
+      disabled="{{!canRecommend || loading}}"
     >
-      智能推荐方案
-    </t-button>
+      {{loading ? '分析中...' : '智能推荐方案'}}
+    </button>
   </view>
 
   <!-- 推荐结果 -->
   <view class="result-section" wx:if="{{scheme}}">
     <!-- 主推荐方案 -->
     <view class="scheme-card primary-card">
-      <view class="scheme-badge">
-        <t-tag theme="primary" size="small">推荐方案</t-tag>
+      <view class="scheme-header">
+        <view class="scheme-badge">推荐方案</view>
+        <view class="scheme-name">{{scheme.schemeName}}</view>
       </view>
-      <view class="scheme-name">{{scheme.recommendation}}</view>
-      <view class="scheme-notes">{{scheme.notes}}</view>
+      <view class="scheme-type">{{scheme.schemeType}}</view>
+      <view class="scheme-desc">{{scheme.description}}</view>
       
-      <!-- 方案参数 -->
-      <view class="scheme-params" wx:if="{{scheme.designParams}}">
+      <!-- 适用条件 -->
+      <view class="info-block">
+        <view class="info-title">适用条件</view>
+        <view class="info-content">{{scheme.applicable}}</view>
+      </view>
+
+      <!-- 优缺点 -->
+      <view class="pros-cons">
+        <view class="pros">
+          <view class="pros-title">优点</view>
+          <view class="pros-item" wx:for="{{scheme.advantages}}" wx:key="*this">
+            <text class="pros-icon">✓</text>
+            <text>{{item}}</text>
+          </view>
+        </view>
+        <view class="cons">
+          <view class="cons-title">缺点</view>
+          <view class="cons-item" wx:for="{{scheme.disadvantages}}" wx:key="*this">
+            <text class="cons-icon">✗</text>
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 设计参数 -->
+      <view class="design-params" wx:if="{{scheme.designParams}}">
         <view class="params-title">设计参数参考</view>
-        <view class="param-item" wx:for="{{scheme.designParamsList}}" wx:key="name">
+        <view class="param-item" wx:for="{{designParamsList}}" wx:key="name">
           <text class="param-name">{{item.name}}</text>
           <text class="param-value">{{item.value}}</text>
         </view>
       </view>
 
-      <t-button 
-        variant="outline" 
-        size="small" 
-        bind:tap="goSchemeDetail"
-        data-scheme="{{scheme.recommendation}}"
-      >
-        查看详情
-      </t-button>
-    </view>
-
-    <!-- 备选方案 -->
-    <view class="alternatives-section">
-      <view class="section-subtitle">备选方案</view>
-      <view 
-        class="scheme-card alternative-card" 
-        wx:for="{{scheme.alternatives}}" 
-        wx:key="*this"
-        bind:tap="goSchemeDetail"
-        data-scheme="{{item}}"
-      >
-        <view class="scheme-name">{{item}}</view>
-        <t-icon name="chevron-right" size="40rpx" color="#999" />
+      <!-- 安全系数 -->
+      <view class="safety-factor" wx:if="{{scheme.safetyFactor}}">
+        <view class="factor-title">安全系数要求</view>
+        <view class="factor-value">Fs ≥ {{scheme.safetyFactor}}</view>
       </view>
-    </view>
 
-    <!-- 警告信息 -->
-    <view class="warnings-section" wx:if="{{scheme.warnings.length > 0}}">
-      <view class="section-subtitle">注意事项</view>
-      <view class="warning-item" wx:for="{{scheme.warnings}}" wx:key="*this">
-        <t-icon name="info-circle" size="32rpx" color="#ED7B2F" />
-        <text class="warning-text">{{item}}</text>
+      <!-- 建议 -->
+      <view class="recommendations">
+        <view class="rec-title">设计建议</view>
+        <view class="rec-item" wx:for="{{scheme.recommendations}}" wx:key="*this">
+          <text class="rec-icon">•</text>
+          <text>{{item}}</text>
+        </view>
+      </view>
+
+      <!-- 联系设计院 -->
+      <view class="consultation-tip">
+        <t-icon name="service" size="16px" color="#e37318"/>
+        <text>{{scheme.consultationTip}}</text>
       </view>
     </view>
 
     <!-- 操作按钮 -->
     <view class="result-actions">
-      <t-button variant="outline" block bind:tap="onSave">
-        保存到项目
-      </t-button>
-      <t-button variant="text" block bind:tap="onShare">
-        分享方案
-      </t-button>
+      <button class="action-btn outline" bind:tap="onShare">分享方案</button>
+      <button class="action-btn primary" bind:tap="goConsultation">联系设计院</button>
     </view>
   </view>
 </view>

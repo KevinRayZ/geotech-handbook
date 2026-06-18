@@ -1,0 +1,261 @@
+/**
+ * 边坡治理方案推荐引擎
+ * 根据边坡参数推荐初步治理方案
+ */
+
+// 边坡治理方案库
+const SLOPE_SCHEMES = {
+  // ========== 岩质边坡 ==========
+  rock_light: {
+    name: '喷锚支护',
+    type: '岩质边坡表层防护',
+    description: '喷射混凝土+锚杆，封闭坡面，加固表层',
+    applicable: '岩质边坡风化破碎带、表层剥落',
+    advantages: ['施工简便', '造价较低', '可绿化'],
+    disadvantages: ['仅适用于表层', '深度有限'],
+    designParams: {
+      '喷射混凝土厚度': '100-150mm',
+      '混凝土强度': 'C20-C25',
+      '锚杆长度': '3-6m',
+      '锚杆间距': '1.5-2.5m',
+      '锚杆直径': 'Φ22-Φ28',
+      '钢筋网': 'Φ6@150-200mm'
+    }
+  },
+  rock_medium: {
+    name: '格构锚固',
+    type: '岩质边坡深层加固',
+    description: '钢筋混凝土格构+预应力锚杆/锚索',
+    applicable: '岩质边坡稳定性不足、有深层滑动风险',
+    advantages: ['加固深度大', '可控制变形', '可绿化'],
+    disadvantages: ['造价较高', '施工周期长'],
+    designParams: {
+      '格构截面': '300×300mm~400×400mm',
+      '格构间距': '2-3m',
+      '锚杆长度': '6-15m',
+      '锚杆预应力': '100-500kN',
+      '锚杆间距': '2-3m',
+      '混凝土强度': 'C25-C30'
+    }
+  },
+  rock_heavy: {
+    name: '预应力锚索+抗滑桩',
+    type: '岩质边坡深层滑动治理',
+    description: '预应力锚索加固+抗滑桩支挡',
+    applicable: '岩质边坡有深层滑动面、大型滑坡',
+    advantages: ['加固深度大', '承载力高', '可靠性强'],
+    disadvantages: ['造价高', '施工复杂'],
+    designParams: {
+      '锚索长度': '15-40m',
+      '锚索吨位': '500-2000kN',
+      '抗滑桩截面': '1.5×2.0m~2.5×3.5m',
+      '桩间距': '4-6m',
+      '桩长': '10-25m',
+      '嵌固深度': '桩长的1/3~1/2'
+    }
+  },
+
+  // ========== 土质边坡 ==========
+  soil_light: {
+    name: '放坡+植草护坡',
+    type: '土质边坡浅层防护',
+    description: '按稳定坡率放坡，坡面植草防护',
+    applicable: '高度较小的土质边坡，场地开阔',
+    advantages: ['造价最低', '生态环保', '施工简便'],
+    disadvantages: ['占地面积大', '高度受限'],
+    designParams: {
+      '坡率': '1:1.25~1:1.5',
+      '坡高': '≤8m',
+      '平台宽度': '≥2m（每8m设一级）',
+      '植草方式': '喷播植草',
+      '截水沟': '坡顶设置',
+      '排水沟': '坡脚设置'
+    }
+  },
+  soil_medium: {
+    name: '土钉墙+喷射混凝土',
+    type: '土质边坡表层加固',
+    description: '土钉加固+挂网喷射混凝土护面',
+    applicable: '土质边坡高度6-15m，无深层滑动',
+    advantages: ['施工快', '造价适中', '可垂直开挖'],
+    disadvantages: ['需要降水', '不适用于软土'],
+    designParams: {
+      '土钉长度': '0.5-1.0倍坡高',
+      '土钉间距': '1.0-2.0m',
+      '土钉直径': 'Φ20-Φ25',
+      '钻孔直径': '100-150mm',
+      '喷射混凝土': '80-150mm厚',
+      '注浆压力': '0.3-0.5MPa'
+    }
+  },
+  soil_heavy: {
+    name: '抗滑桩+预应力锚索',
+    type: '土质边坡深层滑动治理',
+    description: '抗滑桩支挡+预应力锚索加固',
+    applicable: '土质边坡有深层滑动面、大型滑坡',
+    advantages: ['加固深度大', '可靠性高'],
+    disadvantages: ['造价高', '施工周期长'],
+    designParams: {
+      '抗滑桩截面': '1.5×2.0m~2.5×3.5m',
+      '桩间距': '4-6m',
+      '桩长': '10-25m',
+      '锚索长度': '15-35m',
+      '锚索吨位': '500-1500kN',
+      '嵌固深度': '桩长的1/3~1/2'
+    }
+  },
+
+  // ========== 特殊边坡 ==========
+  loess_slope: {
+    name: '挡土墙+排水',
+    type: '黄土边坡治理',
+    description: '重力式挡墙+完善排水系统',
+    applicable: '黄土地区边坡，有湿陷性',
+    advantages: ['针对性强', '可靠性高'],
+    disadvantages: ['造价较高', '需要地基处理'],
+    designParams: {
+      '挡墙类型': '重力式/衡重式',
+      '墙高': '≤8m',
+      '基础埋深': '≥1.0m',
+      '排水孔': 'Φ100@2-3m',
+      '反滤层': '300mm厚砂砾',
+      '截水沟': '坡顶设置'
+    }
+  },
+  expansive_slope: {
+    name: '柔性支护+排水',
+    type: '膨胀土边坡治理',
+    description: '土工格栅加筋+完善排水系统',
+    applicable: '膨胀土地区边坡',
+    advantages: ['适应变形', '排水效果好'],
+    disadvantages: ['需要长期维护'],
+    designParams: {
+      '坡率': '1:1.5~1:2.0',
+      '土工格栅': '双向拉伸，50-100kN/m',
+      '铺设间距': '0.5-0.8m',
+      '排水层': '300mm厚碎石',
+      '坡面防护': '骨架植草',
+      '坡脚防护': '浆砌石护脚'
+    }
+  },
+
+  // ========== 通用推荐 ==========
+  default: {
+    name: '综合防护',
+    type: '边坡综合防护',
+    description: '根据具体情况采用综合防护措施',
+    applicable: '各类边坡，需结合现场情况',
+    advantages: ['适用范围广', '可针对性设计'],
+    disadvantages: ['需要详细勘察'],
+    designParams: {
+      '勘察要求': '详细工程地质勘察',
+      '稳定性分析': '采用多种方法验算',
+      '排水系统': '地表+地下排水',
+      '监测要求': '位移、沉降、裂缝监测',
+      '设计周期': '15-30天',
+      '施工周期': '根据方案确定'
+    }
+  }
+};
+
+/**
+ * 推荐边坡治理方案
+ * @param {Object} params 边坡参数
+ * @returns {Object} 推荐方案
+ */
+function recommendSlopeScheme(params) {
+  const {
+    slopeHeight,     // 边坡高度(m)
+    slopeType,       // 边坡类型：rock/soil
+    rockType,        // 岩石类型：hard/medium/soft（岩质边坡）
+    soilType,        // 土质类型：clay/silt/sand/loess/expansive（土质边坡）
+    slopeAngle,      // 边坡坡度(°)
+    hasSlidingFace,  // 是否有滑动面
+    slidingDepth,    // 滑动面深度(m)
+    environment,     // 环境条件：urban/rural/highway
+    slopeLevel       // 边坡等级：一级/二级/三级
+  } = params;
+
+  // 参数验证
+  if (!slopeHeight || slopeHeight <= 0) {
+    return { error: '请输入有效的边坡高度' };
+  }
+
+  let schemeKey = 'default';
+
+  // 根据边坡类型和高度推荐
+  if (slopeType === 'rock') {
+    // 岩质边坡
+    if (slopeHeight <= 10 && !hasSlidingFace) {
+      schemeKey = 'rock_light';
+    } else if (slopeHeight <= 20 || (hasSlidingFace && slidingDepth <= 10)) {
+      schemeKey = 'rock_medium';
+    } else {
+      schemeKey = 'rock_heavy';
+    }
+  } else if (slopeType === 'soil') {
+    // 土质边坡
+    if (soilType === 'loess') {
+      schemeKey = 'loess_slope';
+    } else if (soilType === 'expansive') {
+      schemeKey = 'expansive_slope';
+    } else if (slopeHeight <= 8 && !hasSlidingFace) {
+      schemeKey = 'soil_light';
+    } else if (slopeHeight <= 15 || (hasSlidingFace && slidingDepth <= 8)) {
+      schemeKey = 'soil_medium';
+    } else {
+      schemeKey = 'soil_heavy';
+    }
+  }
+
+  const scheme = SLOPE_SCHEMES[schemeKey];
+
+  // 计算安全系数要求
+  let fsRequired = 1.25; // 三级边坡
+  if (slopeLevel === '一级') fsRequired = 1.35;
+  else if (slopeLevel === '二级') fsRequired = 1.30;
+
+  return {
+    schemeName: scheme.name,
+    schemeType: scheme.type,
+    description: scheme.description,
+    applicable: scheme.applicable,
+    advantages: scheme.advantages,
+    disadvantages: scheme.disadvantages,
+    designParams: scheme.designParams,
+    safetyFactor: fsRequired,
+    recommendations: [
+      '本推荐为初步方案，详细设计需进行工程地质勘察',
+      '建议进行稳定性计算分析，确定安全系数',
+      '施工前应编制专项施工方案',
+      '应建立边坡监测系统，定期监测'
+    ],
+    consultationTip: '详细方案请联系专业设计院进行设计'
+  };
+}
+
+/**
+ * 获取方案详情
+ */
+function getSchemeDetail(schemeName) {
+  const scheme = SLOPE_SCHEMES[schemeName];
+  return scheme || SLOPE_SCHEMES.default;
+}
+
+/**
+ * 获取所有方案列表
+ */
+function getAllSchemes() {
+  return Object.keys(SLOPE_SCHEMES).map(key => ({
+    key,
+    name: SLOPE_SCHEMES[key].name,
+    type: SLOPE_SCHEMES[key].type
+  }));
+}
+
+module.exports = {
+  recommendSlopeScheme,
+  getSchemeDetail,
+  getAllSchemes,
+  SLOPE_SCHEMES
+};
