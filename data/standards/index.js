@@ -15,6 +15,7 @@ const treatmentStandards = require('./treatment');
 const specialSoilStandards = require('./special-soil');
 const seismicStandards = require('./seismic');
 const monitoringStandards = require('./monitoring');
+const generalStandards = require('./general');
 
 // 合并所有规范数据
 const STANDARDS_DATA = {
@@ -25,7 +26,8 @@ const STANDARDS_DATA = {
   ...treatmentStandards,
   ...specialSoilStandards,
   ...seismicStandards,
-  ...monitoringStandards
+  ...monitoringStandards,
+  ...generalStandards
 };
 
 // 规范分类索引
@@ -37,7 +39,8 @@ const STANDARDS_INDEX = {
   treatment: { name: '地基处理类规范', standards: Object.keys(treatmentStandards) },
   specialSoil: { name: '特殊土类规范', standards: Object.keys(specialSoilStandards) },
   seismic: { name: '抗震类规范', standards: Object.keys(seismicStandards) },
-  monitoring: { name: '监测检测类规范', standards: Object.keys(monitoringStandards) }
+  monitoring: { name: '监测检测类规范', standards: Object.keys(monitoringStandards) },
+  general: { name: '通用规范', standards: Object.keys(generalStandards) }
 };
 
 /**
