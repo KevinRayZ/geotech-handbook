@@ -60,58 +60,45 @@
     </view>
   </view>
 
-  <!-- AI专家咨询入口 - 国际/国内双入口 -->
-  <view class="expert-section">
-    <view class="section-title">AI专家对话</view>
-    <view class="expert-disclaimer">
-      <t-icon name="info-circle" size="14px" color="#e37318"/>
-      <text>AI蒸馏专家思维框架，非专家本人服务，回复仅供参考</text>
+  <!-- AI专家对话入口 -->
+  <view class="expert-banner">
+    <view class="expert-banner-header">
+      <view class="expert-banner-title">
+        <t-icon name="user-circle" size="20px" color="#1a73e8"/>
+        <text>AI专家对话</text>
+        <t-tag size="small" theme="success" variant="light">免费</t-tag>
+      </view>
+      <view class="expert-banner-disclaimer">AI蒸馏专家思维框架 · 非专家本人</view>
     </view>
     
-    <view class="expert-dual-entry">
+    <view class="expert-dual-btn">
       <!-- 国际专家 -->
-      <view class="expert-entry international" bind:tap="goExpertChat" data-category="international">
-        <view class="entry-header">
-          <view class="entry-badge">国际专家</view>
-          <t-tag size="small" theme="success" variant="light">免费</t-tag>
+      <view class="expert-btn international" bind:tap="goExpertChat" data-category="international">
+        <view class="btn-left">
+          <text class="btn-icon">🌍</text>
+          <view class="btn-info">
+            <text class="btn-label">国际专家</text>
+            <text class="btn-name">Karl Terzaghi</text>
+          </view>
         </view>
-        <view class="entry-avatar">🌍</view>
-        <view class="entry-name">Karl Terzaghi</view>
-        <view class="entry-title">现代土力学之父</view>
-        <view class="entry-tags">
-          <t-tag size="small" variant="outline">有效应力</t-tag>
-          <t-tag size="small" variant="outline">固结理论</t-tag>
-        </view>
-        <view class="entry-action">
-          <text>开始对话</text>
-          <t-icon name="chevron-right" size="16px"/>
+        <view class="btn-right">
+          <t-icon name="chevron-right" size="18px" color="#3b82f6"/>
         </view>
       </view>
       
       <!-- 国内专家 -->
-      <view class="expert-entry domestic" bind:tap="goExpertChat" data-category="domestic">
-        <view class="entry-header">
-          <view class="entry-badge">国内专家</view>
-          <t-tag size="small" theme="success" variant="light">免费</t-tag>
+      <view class="expert-btn domestic" bind:tap="goExpertChat" data-category="domestic">
+        <view class="btn-left">
+          <text class="btn-icon">🇨🇳</text>
+          <view class="btn-info">
+            <text class="btn-label">国内专家</text>
+            <text class="btn-name">沈珠江 / 成永刚</text>
+          </view>
         </view>
-        <view class="entry-avatar">🇨🇳</view>
-        <view class="entry-name">沈珠江</view>
-        <view class="entry-title">中国科学院院士</view>
-        <view class="entry-tags">
-          <t-tag size="small" variant="outline">南水模型</t-tag>
-          <t-tag size="small" variant="outline">本构理论</t-tag>
-        </view>
-        <view class="entry-action">
-          <text>开始对话</text>
-          <t-icon name="chevron-right" size="16px"/>
+        <view class="btn-right">
+          <t-icon name="chevron-right" size="18px" color="#f59e0b"/>
         </view>
       </view>
-    </view>
-    
-    <!-- 更多专家入口 -->
-    <view class="more-experts" bind:tap="goExpertConsult">
-      <text>查看更多专家</text>
-      <t-icon name="chevron-right" size="16px" color="#1a73e8"/>
     </view>
   </view>
 
