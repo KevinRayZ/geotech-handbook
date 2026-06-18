@@ -1,0 +1,22 @@
+{
+  "name": "geotech-handbook",
+  "version": "1.0.0",
+  "description": "岩土工程随身手册 - 微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "岩土工程",
+    "小程序",
+    "微信",
+    "基坑",
+    "边坡",
+    "地基处理"
+  ],
+  "author": "WeChat Mini Program Developer",
+  "license": "MIT",
+  "dependencies": {
+    "tdesign-miniprogram": "^1.4.0"
+  }
+}

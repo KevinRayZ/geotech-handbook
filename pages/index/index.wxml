@@ -1,0 +1,139 @@
+<!--pages/index/index.wxml-->
+<view class="index-page">
+  <!-- 顶部欢迎区域 -->
+  <view class="welcome-section">
+    <view class="welcome-bg"></view>
+    <view class="welcome-content">
+      <view class="app-title">岩土工程随身手册</view>
+      <view class="app-desc">专业知识 · 随时查阅</view>
+    </view>
+  </view>
+
+  <!-- 状态卡片 -->
+  <view class="status-card" wx:if="{{ready}}">
+    <view class="status-icon success">
+      <t-icon name="check-circle-filled" size="24px" color="#07a35a"/>
+    </view>
+    <view class="status-content">
+      <view class="status-title">知识库已就绪</view>
+      <view class="status-desc">
+        {{stats.categories}}个分类 | {{stats.formulas}}条公式 | {{stats.methods}}种工法
+      </view>
+    </view>
+  </view>
+
+  <view class="status-card" wx:if="{{!ready}}">
+    <view class="status-icon loading">
+      <t-loading theme="circular" size="24px"/>
+    </view>
+    <view class="status-content">
+      <view class="status-title">知识库加载中...</view>
+      <view class="status-desc">正在初始化专业知识数据</view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="feature-grid">
+    <!-- 快捷查询（新增，放在最前面） -->
+    <view class="feature-item primary" bind:tap="goSearch">
+      <view class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
+        <t-icon name="search" size="28px" color="#fff"/>
+      </view>
+      <view class="feature-name">快捷查询</view>
+      <view class="feature-desc">AI智能搜索</view>
+    </view>
+
+    <view class="feature-item" bind:tap="goKnowledge">
+      <view class="feature-icon" style="background: #0052d9;">
+        <t-icon name="book" size="28px" color="#fff"/>
+      </view>
+      <view class="feature-name">知识库</view>
+      <view class="feature-desc">公式 · 工法 · 参数</view>
+    </view>
+
+    <view class="feature-item" bind:tap="goAdvisor">
+      <view class="feature-icon" style="background: #07a35a;">
+        <t-icon name="lightbulb" size="28px" color="#fff"/>
+      </view>
+      <view class="feature-name">方案推荐</view>
+      <view class="feature-desc">智能选型 · 经验参考</view>
+    </view>
+  </view>
+
+  <!-- 快速搜索 -->
+  <view class="quick-search">
+    <view class="section-title">热门搜索</view>
+    <view class="search-tags">
+      <view 
+        class="search-tag" 
+        wx:for="{{recentSearches}}" 
+        wx:key="*this"
+        data-keyword="{{item}}"
+        bind:tap="onQuickSearch"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 知识分类 -->
+  <view class="category-section">
+    <view class="section-title">知识分类</view>
+    <view class="category-list">
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #07a35a20; color: #07a35a;">
+          <t-icon name="leaf" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">工程地质</view>
+          <view class="category-count">物理性质 · 稠度指标 · 试验方法</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #0052d920; color: #0052d9;">
+          <t-icon name="building-1" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">基坑工程</view>
+          <view class="category-count">土压力 · 稳定性 · 支护工法</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #e3731820; color: #e37318;">
+          <t-icon name="chart" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">边坡工程</view>
+          <view class="category-count">稳定性分析 · 支护设计 · 排水</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #8b5cf620; color: #8b5cf6;">
+          <t-icon name="layers" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">深基坑工程</view>
+          <view class="category-count">逆作法 · 环形支撑 · 时空效应</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+
+      <view class="category-item" bind:tap="goKnowledge">
+        <view class="category-icon" style="background: #d5494120; color: #d54941;">
+          <t-icon name="root" size="24px"/>
+        </view>
+        <view class="category-info">
+          <view class="category-name">地基处理</view>
+          <view class="category-count">复合地基 · CFG桩 · 强夯</view>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#ccc"/>
+      </view>
+    </view>
+  </view>
+</view>

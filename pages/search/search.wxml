@@ -1,0 +1,183 @@
+<!--pages/search/search.wxml-->
+<view class="search-page">
+  <!-- 搜索栏 -->
+  <view class="search-header">
+    <t-search
+      value="{{searchValue}}"
+      placeholder="查询岩土工程参数、公式、工法..."
+      shape="round"
+      focus="{{true}}"
+      bind:change="onSearchInput"
+      bind:confirm="onSearch"
+      bind:clear="onClearSearch"
+    />
+  </view>
+
+  <!-- 搜索建议 -->
+  <view class="suggestions" wx:if="{{showSuggestions && suggestions.length > 0}}">
+    <view class="suggestion-list">
+      <view
+        class="suggestion-item"
+        wx:for="{{suggestions}}"
+        wx:key="*this"
+        data-keyword="{{item}}"
+        bind:tap="onSuggestionTap"
+      >
+        <t-icon name="search" size="16px" color="#999"/>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索中状态 -->
+  <view class="loading-state" wx:if="{{isSearching && !searchDone}}">
+    <t-loading theme="circular" size="40px"/>
+    <text class="loading-text">正在搜索...</text>
+  </view>
+
+  <!-- 未搜索状态：显示热门搜索和历史 -->
+  <view class="pre-search" wx:if="{{!isSearching && !searchDone}}">
+    <!-- AI连接状态 -->
+    <view class="ai-status {{aiConnected ? 'connected' : 'disconnected'}}" wx:if="{{!aiConnected}}">
+      <t-icon name="info-circle" size="16px" color="#d54941"/>
+      <text>AI服务未连接，仅显示本地结果</text>
+    </view>
+
+    <!-- 搜索历史 -->
+    <view class="section" wx:if="{{history.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">搜索历史</text>
+        <text class="clear-btn" bind:tap="clearHistory">清除</text>
+      </view>
+      <view class="tag-list">
+        <view
+          class="tag-item"
+          wx:for="{{history}}"
+          wx:key="*this"
+          data-keyword="{{item}}"
+          bind:tap="onHistoryTap"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 热门搜索 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">热门搜索</text>
+      </view>
+      <view class="tag-list">
+        <view
+          class="tag-item hot"
+          wx:for="{{hotKeywords}}"
+          wx:key="*this"
+          data-keyword="{{item}}"
+          bind:tap="onHotKeywordTap"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 示例问题 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">AI问答示例</text>
+        <t-icon name="ai" size="20px" color="#8b5cf6"/>
+      </view>
+      <view class="example-list">
+        <view
+          class="example-item"
+          wx:for="{{exampleQuestions}}"
+          wx:key="*this"
+          data-question="{{item}}"
+          bind:tap="onExampleTap"
+        >
+          <t-icon name="chat" size="16px" color="#8b5cf6"/>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="search-results" wx:if="{{searchDone}}">
+    <!-- 本地知识库结果 -->
+    <view class="result-section" wx:if="{{hasLocalResults}}">
+      <view class="result-header">
+        <t-icon name="book" size="20px" color="#0052d9"/>
+        <text class="result-title">知识库结果</text>
+        <t-tag theme="primary" size="small">{{localResults.length}}条</t-tag>
+      </view>
+
+      <view class="result-list">
+        <view
+          class="result-item"
+          wx:for="{{localResults}}"
+          wx:key="id"
+          data-item="{{item}}"
+          bind:tap="onLocalResultTap"
+        >
+          <view class="result-type" style="background: {{item.categoryColor || '#0052d9'}}20; color: {{item.categoryColor || '#0052d9'}}">
+            {{item.type === 'formula' ? '公式' : item.type === 'method' ? '工法' : '参数'}}
+          </view>
+          <view class="result-name">{{item.name}}</view>
+          <view class="result-formula" wx:if="{{item.formula}}">{{item.formula}}</view>
+          <view class="result-desc">{{item.description}}</view>
+          <view class="result-category">{{item.categoryName || item.category}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- AI搜索中 -->
+    <view class="ai-searching" wx:if="{{aiSearching}}">
+      <view class="result-header">
+        <t-icon name="ai" size="20px" color="#8b5cf6"/>
+        <text class="result-title">AI智能分析</text>
+        <t-loading theme="circular" size="16px"/>
+      </view>
+      <view class="ai-hint">
+        <text>正在调用AI进行深度分析...</text>
+      </view>
+    </view>
+
+    <!-- AI响应结果 -->
+    <view class="result-section ai-section" wx:if="{{hasAiResponse}}">
+      <view class="result-header">
+        <t-icon name="ai" size="20px" color="#8b5cf6"/>
+        <text class="result-title">AI专业解答</text>
+        <t-tag theme="warning" size="small">AI</t-tag>
+        <view class="copy-btn" bind:tap="onCopyAiResponse">
+          <t-icon name="copy" size="16px" color="#666"/>
+        </view>
+      </view>
+
+      <view class="ai-response-content">
+        <rich-text nodes="{{aiResponse}}"/>
+      </view>
+    </view>
+
+    <!-- AI错误 -->
+    <view class="ai-error" wx:if="{{aiError}}">
+      <view class="result-header">
+        <t-icon name="error-circle" size="20px" color="#d54941"/>
+        <text class="result-title">AI响应异常</text>
+      </view>
+      <view class="error-content">{{aiError}}</view>
+      <view class="error-hint">已显示本地知识库结果，AI功能稍后重试</view>
+    </view>
+
+    <!-- 无结果 -->
+    <view class="no-result" wx:if="{{!hasLocalResults && !hasAiResponse && !aiSearching && !aiError}}">
+      <t-icon name="search" size="48px" color="#ccc"/>
+      <text class="no-result-text">未找到相关内容</text>
+      <text class="no-result-hint">请尝试其他关键词，或使用更专业的术语</text>
+    </view>
+
+    <!-- 重新搜索 -->
+    <view class="retry-section" wx:if="{{searchDone && !isSearching}}">
+      <view class="retry-btn" bind:tap="onClearSearch">重新搜索</view>
+    </view>
+  </view>
+</view>

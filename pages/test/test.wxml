@@ -1,0 +1,61 @@
+<!--pages/test/test.wxml-->
+<view class="test-page">
+  <view class="page-header">
+    <view class="title">功能测试</view>
+    <view class="subtitle">验证知识库加载和搜索功能</view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-card" wx:if="{{stats}}">
+    <view class="stats-title">知识库统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value">{{stats.categories}}</view>
+        <view class="stat-label">分类</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.formulas}}</view>
+        <view class="stat-label">公式</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.methods}}</view>
+        <view class="stat-label">工法</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.parameters}}</view>
+        <view class="stat-label">参数</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 测试结果 -->
+  <view class="test-list">
+    <view class="test-header">
+      <text>测试项目 ({{testResults.length}})</text>
+      <text class="retest-btn" bind:tap="onRetest">重新测试</text>
+    </view>
+
+    <view 
+      class="test-item {{item.success ? 'success' : 'fail'}}"
+      wx:for="{{testResults}}"
+      wx:key="name"
+    >
+      <view class="test-icon">
+        <t-icon name="{{item.success ? 'check-circle-filled' : 'close-circle-filled'}}" 
+                size="24px" 
+                color="{{item.success ? '#07a35a' : '#d54941'}}"/>
+      </view>
+      <view class="test-content">
+        <view class="test-name">{{item.name}}</view>
+        <view class="test-message" wx:if="{{item.success}}">{{item.message}}</view>
+        <view class="test-error" wx:if="{{!item.success}}">{{item.error}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{isRunning}}">
+    <t-loading theme="circular" size="40px"/>
+    <text>正在运行测试...</text>
+  </view>
+</view>

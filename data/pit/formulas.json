@@ -1,0 +1,851 @@
+[
+  {
+    "id": "formula-rankine-active",
+    "name": "朗肯主动土压力系数",
+    "formula": "Ka = (1 - sinφ) / (1 + sinφ) = tan²(45° - φ/2)",
+    "description": "用于计算挡土墙主动土压力系数，适用于墙背垂直、光滑、填土水平的情况",
+    "params": [
+      {
+        "name": "φ",
+        "description": "土的内摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "朗肯",
+      "主动",
+      "土压力",
+      "系数"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-rankine-passive",
+    "name": "朗肯被动土压力系数",
+    "formula": "Kp = (1 + sinφ) / (1 - sinφ) = tan²(45° + φ/2)",
+    "description": "用于计算挡土墙被动土压力系数，适用于墙背垂直、光滑、填土水平的情况",
+    "params": [
+      {
+        "name": "φ",
+        "description": "土的内摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "朗肯",
+      "被动",
+      "土压力",
+      "系数"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-earth-pressure-active",
+    "name": "主动土压力计算",
+    "formula": "Pa = Ka × γ × z - 2c × √Ka",
+    "description": "计算挡土墙任意深度处的主动土压力强度",
+    "params": [
+      {
+        "name": "Ka",
+        "description": "主动土压力系数"
+      },
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "z",
+        "description": "计算点深度",
+        "unit": "m"
+      },
+      {
+        "name": "c",
+        "description": "土的黏聚力",
+        "unit": "kPa"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "主动",
+      "土压力",
+      "计算",
+      "强度"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-stability-overturning",
+    "name": "抗倾覆稳定性安全系数",
+    "formula": "Ks = Mr / Mo ≥ 1.2",
+    "description": "验算基坑支护结构的抗倾覆稳定性",
+    "params": [
+      {
+        "name": "Mr",
+        "description": "抗倾覆力矩",
+        "unit": "kN·m"
+      },
+      {
+        "name": "Mo",
+        "description": "倾覆力矩",
+        "unit": "kN·m"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "抗倾覆",
+      "稳定性",
+      "安全系数",
+      "验算"
+    ],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "formula-stability-heaving",
+    "name": "抗隆起稳定性安全系数",
+    "formula": "Kh = (γ×D×Nc + q) / (γ×H + q) ≥ 1.6",
+    "description": "验算基坑底部的抗隆起稳定性",
+    "params": [
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      },
+      {
+        "name": "Nc",
+        "description": "承载力系数"
+      },
+      {
+        "name": "q",
+        "description": "地面超载",
+        "unit": "kPa"
+      },
+      {
+        "name": "H",
+        "description": "基坑深度",
+        "unit": "m"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "抗隆起",
+      "稳定性",
+      "安全系数",
+      "验算"
+    ],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "formula-stability-piping",
+    "name": "抗管涌稳定性安全系数",
+    "formula": "Kp = (γw × h) / (γ × D) ≥ 1.5",
+    "description": "验算基坑底部的抗管涌稳定性",
+    "params": [
+      {
+        "name": "γw",
+        "description": "水的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "h",
+        "description": "水头差",
+        "unit": "m"
+      },
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "抗管涌",
+      "稳定性",
+      "安全系数",
+      "验算"
+    ],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "formula-soil-nail-pullout",
+    "name": "土钉抗拔力计算",
+    "formula": "Tu = π × D × L × τ",
+    "description": "计算单根土钉的抗拔承载力",
+    "params": [
+      {
+        "name": "D",
+        "description": "土钉孔径",
+        "unit": "m"
+      },
+      {
+        "name": "L",
+        "description": "土钉有效长度",
+        "unit": "m"
+      },
+      {
+        "name": "τ",
+        "description": "土钉与土体界面摩阻力",
+        "unit": "kPa"
+      }
+    ],
+    "category": "土钉墙",
+    "keywords": [
+      "土钉",
+      "抗拔",
+      "承载力",
+      "计算"
+    ],
+    "source": "基坑工程手册第9章"
+  },
+  {
+    "id": "formula-anchor-pullout",
+    "name": "锚杆抗拔力计算",
+    "formula": "Tu = π × D × L × τ × α",
+    "description": "计算单根锚杆的抗拔承载力",
+    "params": [
+      {
+        "name": "D",
+        "description": "锚杆孔径",
+        "unit": "m"
+      },
+      {
+        "name": "L",
+        "description": "锚杆有效长度",
+        "unit": "m"
+      },
+      {
+        "name": "τ",
+        "description": "锚固体与土体界面摩阻力",
+        "unit": "kPa"
+      },
+      {
+        "name": "α",
+        "description": "工作条件系数"
+      }
+    ],
+    "category": "锚杆",
+    "keywords": [
+      "锚杆",
+      "抗拔",
+      "承载力",
+      "计算"
+    ],
+    "source": "基坑工程手册第17章"
+  },
+  {
+    "id": "formula-deformation-top",
+    "name": "基坑顶部水平位移估算",
+    "formula": "δ = α × H² / (E × D)",
+    "description": "估算基坑顶部的水平位移",
+    "params": [
+      {
+        "name": "α",
+        "description": "经验系数"
+      },
+      {
+        "name": "H",
+        "description": "基坑深度",
+        "unit": "m"
+      },
+      {
+        "name": "E",
+        "description": "土的压缩模量",
+        "unit": "MPa"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      }
+    ],
+    "category": "变形",
+    "keywords": [
+      "变形",
+      "位移",
+      "估算",
+      "水平"
+    ],
+    "source": "基坑工程手册第7章"
+  },
+  {
+    "id": "formula-dewatering",
+    "name": "降水井出水量计算",
+    "formula": "Q = 2πk×H×s / ln(R/r)",
+    "description": "计算单井的出水量",
+    "params": [
+      {
+        "name": "k",
+        "description": "渗透系数",
+        "unit": "m/d"
+      },
+      {
+        "name": "H",
+        "description": "含水层厚度",
+        "unit": "m"
+      },
+      {
+        "name": "s",
+        "description": "降深",
+        "unit": "m"
+      },
+      {
+        "name": "R",
+        "description": "影响半径",
+        "unit": "m"
+      },
+      {
+        "name": "r",
+        "description": "井半径",
+        "unit": "m"
+      }
+    ],
+    "category": "降水",
+    "keywords": [
+      "降水",
+      "出水量",
+      "计算",
+      "井"
+    ],
+    "source": "基坑工程手册第22章"
+  },
+  {
+    "id": "formula-coulomb-active",
+    "name": "库仑主动土压力系数",
+    "formula": "Ka = [sin(α+φ) / (√(sinα)×sin(α+φ-δ))]²",
+    "description": "库仑土压力理论计算主动土压力系数，考虑墙背摩擦角",
+    "params": [
+      {
+        "name": "α",
+        "description": "墙背倾角",
+        "unit": "°"
+      },
+      {
+        "name": "φ",
+        "description": "土的内摩擦角",
+        "unit": "°"
+      },
+      {
+        "name": "δ",
+        "description": "墙背摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "库仑",
+      "主动",
+      "土压力",
+      "系数"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-coulomb-passive",
+    "name": "库仑被动土压力系数",
+    "formula": "Kp = [sin(α-φ) / (√(sinα)×sin(α+φ+δ))]²",
+    "description": "库仑土压力理论计算被动土压力系数",
+    "params": [
+      {
+        "name": "α",
+        "description": "墙背倾角",
+        "unit": "°"
+      },
+      {
+        "name": "φ",
+        "description": "土的内摩擦角",
+        "unit": "°"
+      },
+      {
+        "name": "δ",
+        "description": "墙背摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "库仑",
+      "被动",
+      "土压力",
+      "系数"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-earth-pressure-at-rest",
+    "name": "静止土压力系数",
+    "formula": "K0 = 1 - sinφ",
+    "description": "静止土压力系数计算公式，用于未发生位移的挡土结构",
+    "params": [
+      {
+        "name": "φ",
+        "description": "土的内摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "土压力",
+    "keywords": [
+      "静止",
+      "土压力",
+      "系数",
+      "K0"
+    ],
+    "source": "基坑工程手册第4章"
+  },
+  {
+    "id": "formula-soil-nail-ultimate",
+    "name": "土钉极限抗拔力",
+    "formula": "Tu = π×D×L×τf",
+    "description": "土钉极限抗拔承载力计算",
+    "params": [
+      {
+        "name": "D",
+        "description": "土钉孔径",
+        "unit": "m"
+      },
+      {
+        "name": "L",
+        "description": "土钉有效长度",
+        "unit": "m"
+      },
+      {
+        "name": "τf",
+        "description": "界面极限摩阻力",
+        "unit": "kPa"
+      }
+    ],
+    "category": "土钉墙",
+    "keywords": [
+      "土钉",
+      "极限",
+      "抗拔",
+      "承载力"
+    ],
+    "source": "基坑工程手册第9章"
+  },
+  {
+    "id": "formula-soil-nail-spacing",
+    "name": "土钉水平间距",
+    "formula": "Sh = Sv = 1.0~2.0m",
+    "description": "土钉水平和竖向间距的取值范围",
+    "params": [],
+    "category": "土钉墙",
+    "keywords": [
+      "土钉",
+      "间距",
+      "水平",
+      "竖向"
+    ],
+    "source": "基坑工程手册第9章"
+  },
+  {
+    "id": "formula-continuous-wall-moment",
+    "name": "地下连续墙弯矩计算",
+    "formula": "M = q×L²/10",
+    "description": "地下连续墙最大弯矩估算",
+    "params": [
+      {
+        "name": "q",
+        "description": "土压力强度",
+        "unit": "kN/m"
+      },
+      {
+        "name": "L",
+        "description": "支撑间距",
+        "unit": "m"
+      }
+    ],
+    "category": "连续墙",
+    "keywords": [
+      "连续墙",
+      "弯矩",
+      "计算",
+      "地下"
+    ],
+    "source": "基坑工程手册第11章"
+  },
+  {
+    "id": "formula-row-pile-stiffness",
+    "name": "排桩抗弯刚度",
+    "formula": "EI = E×π×D⁴/64",
+    "description": "单桩抗弯刚度计算",
+    "params": [
+      {
+        "name": "E",
+        "description": "混凝土弹性模量",
+        "unit": "MPa"
+      },
+      {
+        "name": "D",
+        "description": "桩径",
+        "unit": "m"
+      }
+    ],
+    "category": "排桩",
+    "keywords": [
+      "排桩",
+      "刚度",
+      "抗弯",
+      "计算"
+    ],
+    "source": "基坑工程手册第12章"
+  },
+  {
+    "id": "formula-anchor-prestress",
+    "name": "锚杆预应力锁定值",
+    "formula": "Plock = (0.5~0.8)×Pt",
+    "description": "锚杆预应力锁定值取值范围",
+    "params": [
+      {
+        "name": "Pt",
+        "description": "锚杆设计拉力",
+        "unit": "kN"
+      }
+    ],
+    "category": "锚杆",
+    "keywords": [
+      "锚杆",
+      "预应力",
+      "锁定",
+      "设计"
+    ],
+    "source": "基坑工程手册第17章"
+  },
+  {
+    "id": "formula-support-axial-force",
+    "name": "支撑轴力计算",
+    "formula": "N = q×L×s",
+    "description": "内支撑轴力计算公式",
+    "params": [
+      {
+        "name": "q",
+        "description": "土压力强度",
+        "unit": "kN/m"
+      },
+      {
+        "name": "L",
+        "description": "支撑长度",
+        "unit": "m"
+      },
+      {
+        "name": "s",
+        "description": "支撑间距",
+        "unit": "m"
+      }
+    ],
+    "category": "内支撑",
+    "keywords": [
+      "支撑",
+      "轴力",
+      "计算",
+      "内支撑"
+    ],
+    "source": "基坑工程手册第16章"
+  },
+  {
+    "id": "formula-dewatering-settlement",
+    "name": "降水引起的地面沉降",
+    "formula": "s = Σ(Δσ×H/E)",
+    "description": "降水引起的周边地面沉降估算",
+    "params": [
+      {
+        "name": "Δσ",
+        "description": "有效应力增量",
+        "unit": "kPa"
+      },
+      {
+        "name": "H",
+        "description": "土层厚度",
+        "unit": "m"
+      },
+      {
+        "name": "E",
+        "description": "压缩模量",
+        "unit": "MPa"
+      }
+    ],
+    "category": "降水",
+    "keywords": [
+      "降水",
+      "沉降",
+      "地面",
+      "估算"
+    ],
+    "source": "基坑工程手册第22章"
+  },
+  {
+    "id": "pit-formula-1",
+    "name": "主动土压力系数：",
+    "formula": "Ka = (1 - sinφ) / (1 + sinφ) = tan²(45° - φ/2)",
+    "description": "主动土压力系数：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "主动土压力系数："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-2",
+    "name": "被动土压力系数：",
+    "formula": "Kp = (1 + sinφ) / (1 - sinφ) = tan²(45° + φ/2)",
+    "description": "被动土压力系数：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "被动土压力系数："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-3",
+    "name": "静止土压力系数：",
+    "formula": "K0 = 1 - sinφ",
+    "description": "静止土压力系数：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "静止土压力系数："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-4",
+    "name": "主动土压力计算：",
+    "formula": "Pa = Ka × γ × z - 2c × √Ka",
+    "description": "主动土压力计算：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "主动土压力计算："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-5",
+    "name": "被动土压力计算：",
+    "formula": "Pp = Kp × γ × z + 2c × √Kp",
+    "description": "被动土压力计算：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "被动土压力计算："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-6",
+    "name": "主动土压力系数：",
+    "formula": "Ka = cos²(φ - α) / [cos²α × cos(α + δ) × (1 + √(sin(φ+δ)×sin(φ-β)/cos(α+δ)×cos(α-β)))²]",
+    "description": "主动土压力系数：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "主动土压力系数："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-7",
+    "name": "公式：",
+    "formula": "Pa = Ka × γsat × z",
+    "description": "公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-8",
+    "name": "公式：",
+    "formula": "Pa = Ka × γ' × z + γw × z",
+    "description": "公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-9",
+    "name": "计算方法：",
+    "formula": "ΔPa = Ka × q",
+    "description": "计算方法：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算方法："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-10",
+    "name": "计算方法：",
+    "formula": "σ = γ × z × K",
+    "description": "计算方法：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算方法："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-11",
+    "name": "计算公式：",
+    "formula": "Fs = (γ × t × Nq + c × Nc) / (γ × h + q)",
+    "description": "计算公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-12",
+    "name": "地基承载力系数：",
+    "formula": "Nq = e^(π×tanφ) × tan²(45° + φ/2)",
+    "description": "地基承载力系数：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "地基承载力系数："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-13",
+    "name": "计算公式：",
+    "formula": "Fs = Mp / Mo",
+    "description": "计算公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-14",
+    "name": "计算公式：",
+    "formula": "Fs = Fp / Fo",
+    "description": "计算公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-15",
+    "name": "计算公式：",
+    "formula": "Fs = (γ' × t) / (γw × hw)",
+    "description": "计算公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-16",
+    "name": "计算公式：",
+    "formula": "Fs = (γ × t) / (γw × h)",
+    "description": "计算公式：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "计算公式："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-17",
+    "name": "水平弹簧支座的压缩弹簧刚度：",
+    "formula": "Kh = k × b × h",
+    "description": "水平弹簧支座的压缩弹簧刚度：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "水平弹簧支座的压缩弹簧刚度："
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-18",
+    "name": "方法一：基于实测统计",
+    "formula": "δm = α × H",
+    "description": "方法一：基于实测统计",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "方法一：基于实测统计"
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-19",
+    "name": "方法二：基于抗隆起稳定系数",
+    "formula": "δm = f(Fs)",
+    "description": "方法二：基于抗隆起稳定系数",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "方法二：基于抗隆起稳定系数"
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-20",
+    "name": "方法一：三角形法",
+    "formula": "δ = c × (S1 / S2)",
+    "description": "方法一：三角形法",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "方法一：三角形法"
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-21",
+    "name": "方法二：指数法",
+    "formula": "δ = δ0 × e^(-x/L)",
+    "description": "方法二：指数法",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "方法二：指数法"
+    ],
+    "source": "基坑工程手册"
+  },
+  {
+    "id": "pit-formula-22",
+    "name": "主要影响区范围：",
+    "formula": "xm = (0.5~0.7) × h0",
+    "description": "主要影响区范围：",
+    "params": [],
+    "category": "土压力",
+    "keywords": [
+      "主要影响区范围："
+    ],
+    "source": "基坑工程手册"
+  }
+]

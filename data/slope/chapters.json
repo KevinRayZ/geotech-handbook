@@ -1,0 +1,58 @@
+[
+  {
+    "id": "slope-ch01",
+    "title": "边坡工程概述",
+    "chapter": 1,
+    "summary": "边坡分类、破坏类型、工程问题",
+    "keywords": ["边坡", "概述", "分类", "破坏"]
+  },
+  {
+    "id": "slope-ch02",
+    "title": "边坡勘察",
+    "chapter": 2,
+    "summary": "勘察要求、方法选择、资料整理",
+    "keywords": ["勘察", "方法", "资料", "要求"]
+  },
+  {
+    "id": "slope-ch03",
+    "title": "边坡稳定性分析",
+    "chapter": 3,
+    "summary": "极限平衡法、有限元法、稳定性评价",
+    "keywords": ["稳定性", "分析", "极限平衡", "有限元"]
+  },
+  {
+    "id": "slope-ch04",
+    "title": "边坡支护设计",
+    "chapter": 4,
+    "summary": "支护类型、设计方法、构造要求",
+    "keywords": ["支护", "设计", "类型", "构造"]
+  },
+  {
+    "id": "slope-ch05",
+    "title": "边坡排水工程",
+    "chapter": 5,
+    "summary": "排水系统、设计计算、施工技术",
+    "keywords": ["排水", "系统", "设计", "施工"]
+  },
+  {
+    "id": "slope-ch06",
+    "title": "边坡防护与绿化",
+    "chapter": 6,
+    "summary": "防护措施、绿化技术、生态恢复",
+    "keywords": ["防护", "绿化", "生态", "恢复"]
+  },
+  {
+    "id": "slope-ch07",
+    "title": "边坡施工",
+    "chapter": 7,
+    "summary": "施工方法、质量控制、安全措施",
+    "keywords": ["施工", "方法", "质量", "安全"]
+  },
+  {
+    "id": "slope-ch08",
+    "title": "边坡监测与预警",
+    "chapter": 8,
+    "summary": "监测系统、预警指标、应急措施",
+    "keywords": ["监测", "预警", "指标", "应急"]
+  }
+]

@@ -1,0 +1,126 @@
+<!-- 方案推荐结果页面 -->
+<view class="container" wx:if="{{scheme}}">
+  <!-- 项目信息 -->
+  <view class="project-info card" wx:if="{{projectInfo}}">
+    <view class="section-title">项目信息</view>
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">项目名称</text>
+        <text class="info-value">{{projectInfo.projectName}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">基坑深度</text>
+        <text class="info-value">{{projectInfo.pitDepth}}m</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">地质条件</text>
+        <text class="info-value">{{projectInfo.soilType}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐方案 -->
+  <view class="recommend-section card">
+    <view class="section-title">推荐方案</view>
+    <view class="scheme-card primary-scheme">
+      <view class="scheme-header">
+        <view class="scheme-name">{{scheme.recommendation}}</view>
+        <t-tag variant="light" theme="success" size="small">推荐</t-tag>
+      </view>
+      <view class="scheme-reason">{{scheme.reason}}</view>
+      
+      <!-- 方案优势 -->
+      <view class="scheme-advantages" wx:if="{{scheme.advantages}}">
+        <view class="advantages-title">方案优势</view>
+        <view class="advantage-item" wx:for="{{scheme.advantages}}" wx:key="*this">
+          <t-icon name="check-circle" size="28rpx" color="#00A870" />
+          <text>{{item}}</text>
+        </view>
+      </view>
+
+      <!-- 设计参数 -->
+      <view class="design-params" wx:if="{{scheme.designParams}}">
+        <view class="params-title">设计参数参考</view>
+        <view class="param-item" wx:for="{{scheme.designParamsList}}" wx:key="name">
+          <text class="param-name">{{item.name}}</text>
+          <text class="param-value">{{item.value}}</text>
+        </view>
+      </view>
+
+      <!-- 适用条件 -->
+      <view class="scheme-conditions" wx:if="{{scheme.conditions}}">
+        <view class="conditions-title">适用条件</view>
+        <view class="condition-item" wx:for="{{scheme.conditions}}" wx:key="*this">
+          <t-icon name="info-circle" size="28rpx" color="#0052D9" />
+          <text>{{item}}</text>
+        </view>
+      </view>
+
+      <t-button 
+        variant="outline" 
+        size="small" 
+        bind:tap="onGoKnowledge"
+        data-id="{{scheme.recommendationId}}"
+      >
+        查看详细方案
+      </t-button>
+    </view>
+  </view>
+
+  <!-- 备选方案 -->
+  <view class="alternatives-section card" wx:if="{{scheme.alternatives.length > 0}}">
+    <view class="section-title">备选方案</view>
+    <view 
+      class="scheme-card alternative-card" 
+      wx:for="{{scheme.alternatives}}" 
+      wx:key="*this"
+      bind:tap="onGoKnowledge"
+      data-id="{{item.id}}"
+    >
+      <view class="scheme-name">{{item.name}}</view>
+      <view class="scheme-brief">{{item.brief}}</view>
+      <t-icon name="chevron-right" size="40rpx" color="#999" />
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view class="warnings-section card" wx:if="{{scheme.warnings.length > 0}}">
+    <view class="section-title">注意事项</view>
+    <view class="warning-item" wx:for="{{scheme.warnings}}" wx:key="*this">
+      <t-icon name="warning" size="32rpx" color="#ED7B2F" />
+      <text class="warning-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 相关计算 -->
+  <view class="calculators-section card" wx:if="{{scheme.calculators.length > 0}}">
+    <view class="section-title">相关计算工具</view>
+    <view 
+      class="calculator-item" 
+      wx:for="{{scheme.calculators}}" 
+      wx:key="id"
+      bind:tap="onGoFormula"
+      data-id="{{item.id}}"
+    >
+      <t-icon name="calculator" size="40rpx" color="#0052D9" />
+      <view class="calculator-info">
+        <view class="calculator-name">{{item.name}}</view>
+        <view class="calculator-desc">{{item.description}}</view>
+      </view>
+      <t-icon name="chevron-right" size="40rpx" color="#999" />
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <t-button block theme="primary" bind:tap="onSave">保存到项目</t-button>
+    <t-button block variant="outline" bind:tap="onShare">分享方案</t-button>
+  </view>
+</view>
+
+<!-- 空状态 -->
+<view class="empty" wx:else>
+  <t-icon name="info-circle" size="80rpx" color="#ccc" />
+  <text class="empty-text">未找到方案数据</text>
+  <t-button block bind:tap="onBack">返回重新生成</t-button>
+</view>

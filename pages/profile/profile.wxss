@@ -1,0 +1,76 @@
+/* pages/profile/profile.wxss */
+
+.container {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 用户信息 */
+.user-section {
+  margin-bottom: 32rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+}
+
+.user-avatar {
+  margin-right: 24rpx;
+}
+
+.user-detail {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.user-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 功能列表 */
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.menu-group {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 底部信息 */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0;
+  margin-top: 48rpx;
+}
+
+.footer-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.footer-version {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.footer-copyright {
+  font-size: 22rpx;
+  color: #999;
+}

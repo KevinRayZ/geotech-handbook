@@ -1,0 +1,108 @@
+{
+  "name": "特殊性土判别标准",
+  "source": "《工程地质手册》第五版 第五篇",
+  "types": {
+    "collapsibleLoess": {
+      "name": "湿陷性黄土",
+      "identification": {
+        "collapsibleCoeff": "δs ≥ 0.015",
+        "selfWeightCoeff": "δzs ≥ 0.015 → 自重湿陷性黄土"
+      },
+      "grades": [
+        { "level": "Ⅰ(轻微)", "Δs": "50~300mm" },
+        { "level": "Ⅱ(中等)", "Δs": "300~600mm" },
+        { "level": "Ⅲ(严重)", "Δs": "600~900mm" },
+        { "level": "Ⅳ(很严重)", "Δs": ">900mm" }
+      ],
+      "treatment": ["强夯法", "灰土挤密桩", "换填垫层法"]
+    },
+    "redClay": {
+      "name": "红黏土",
+      "identification": {
+        "liquidLimit": "wL ≥ 50%"
+      },
+      "states": [
+        { "state": "坚硬", "aw": "<0.55" },
+        { "state": "硬塑", "aw": "0.55~0.70" },
+        { "state": "可塑", "aw": "0.70~0.85" },
+        { "state": "软塑", "aw": "0.85~1.00" },
+        { "state": "流塑", "aw": "≥1.00" }
+      ]
+    },
+    "softSoil": {
+      "name": "软土",
+      "identification": {
+        "waterContent": "w ≥ wL（液限）",
+        "voidRatio": "e ≥ 1.0",
+        "compressibility": "a₁₋₂ ≥ 0.5 MPa⁻¹",
+        "SPT": "N < 5",
+        "vaneShear": "Cu < 35 kPa"
+      },
+      "treatment": ["水泥土搅拌桩", "预压法", "CFG桩"]
+    },
+    "expansiveSoil": {
+      "name": "膨胀土",
+      "identification": {
+        "freeExpansion": "δef ≥ 40%"
+      },
+      "expansionPotential": [
+        { "level": "弱", "δef": "40%~65%" },
+        { "level": "中", "δef": "65%~90%" },
+        { "level": "强", "δef": "≥90%" }
+      ],
+      "shrinkageGrade": [
+        { "level": "Ⅰ(轻微)", "sc": "15~35mm" },
+        { "level": "Ⅱ(中等)", "sc": "35~70mm" },
+        { "level": "Ⅲ(严重)", "sc": "≥70mm" }
+      ]
+    },
+    "frozenSoil": {
+      "name": "冻土",
+      "frostHeave": [
+        { "level": "不冻胀", "η": "≤1%" },
+        { "level": "弱冻胀", "η": "1%~3.5%" },
+        { "level": "冻胀", "η": "3.5%~6%" },
+        { "level": "强冻胀", "η": "6%~12%" },
+        { "level": "特强冻胀", "η": ">12%" }
+      ],
+      "thawSettlement": [
+        { "level": "不融沉", "δ₀": "≤1%" },
+        { "level": "弱融沉", "δ₀": "1%~5%" },
+        { "level": "融沉", "δ₀": "5%~10%" },
+        { "level": "强融沉", "δ₀": "10%~25%" },
+        { "level": "融陷", "δ₀": ">25%" }
+      ]
+    },
+    "salineSoil": {
+      "name": "盐渍土",
+      "identification": {
+        "saltContent": "易溶盐含量 ≥ 0.3%"
+      },
+      "types": [
+        { "name": "氯盐盐渍土", "ratio": "Cl⁻/SO₄²⁻ > 2" },
+        { "name": "亚氯盐渍土", "ratio": "Cl⁻/SO₄²⁻ = 1~2" },
+        { "name": "亚硫酸盐渍土", "ratio": "Cl⁻/SO₄²⁻ = 0.3~1" },
+        { "name": "硫酸盐渍土", "ratio": "Cl⁻/SO₄²⁻ ≤ 0.3" }
+      ]
+    },
+    "liquefiableSoil": {
+      "name": "液化判别",
+      "preliminary": {
+        "conditions": [
+          "地下水位深度",
+          "黏粒含量",
+          "上覆非液化土层厚度"
+        ]
+      },
+      "SPT": {
+        "criterion": "N₆₃.₅ < Ncr → 液化",
+        "liquefactionIndex": "IlE = Σ(1-Ni/Ncri)diwi"
+      },
+      "grades": [
+        { "level": "轻微", "IlE": "<5" },
+        { "level": "中等", "IlE": "5~15" },
+        { "level": "严重", "IlE": ">15" }
+      ]
+    }
+  }
+}

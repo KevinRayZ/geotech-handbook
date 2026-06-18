@@ -1,0 +1,401 @@
+[
+  {
+    "id": "formula-slope-stability",
+    "name": "边坡稳定性安全系数",
+    "formula": "Fs = Σ(抗滑力) / Σ(下滑力)",
+    "description": "边坡稳定性分析的基本公式，用于评估边坡的安全状态",
+    "params": [
+      {
+        "name": "抗滑力",
+        "description": "抵抗滑动的力"
+      },
+      {
+        "name": "下滑力",
+        "description": "促使滑动的力"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "边坡",
+      "稳定性",
+      "安全系数",
+      "滑坡"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-bishop",
+    "name": "简化Bishop法",
+    "formula": "Fs = Σ[Ri/(cosαi + sinαi×tanφi/Fs)] / Σ[Wi×sinαi]",
+    "description": "Bishop条分法，适用于圆弧滑动面的边坡稳定性分析",
+    "params": [
+      {
+        "name": "Ri",
+        "description": "第i土条的抗滑力"
+      },
+      {
+        "name": "αi",
+        "description": "第i土条的倾角"
+      },
+      {
+        "name": "φi",
+        "description": "第i土条的内摩擦角"
+      },
+      {
+        "name": "Wi",
+        "description": "第i土条的重量"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "Bishop",
+      "条分法",
+      "圆弧",
+      "稳定性"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-sarma",
+    "name": "Sarma法",
+    "formula": "Fs = Σ[ci×bi + (Ni - ui×bi)×tanφi] / Σ[Ni×sinαi]",
+    "description": "Sarma法，适用于任意形状滑动面的边坡稳定性分析",
+    "params": [
+      {
+        "name": "ci",
+        "description": "第i土条的黏聚力"
+      },
+      {
+        "name": "bi",
+        "description": "第i土条的宽度"
+      },
+      {
+        "name": "Ni",
+        "description": "第i土条的法向力"
+      },
+      {
+        "name": "ui",
+        "description": "第i土条的孔隙水压力"
+      },
+      {
+        "name": "φi",
+        "description": "第i土条的内摩擦角"
+      },
+      {
+        "name": "αi",
+        "description": "第i土条的倾角"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "Sarma",
+      "条分法",
+      "任意滑面",
+      "稳定性"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-anti-slide-pile",
+    "name": "抗滑桩推力计算",
+    "formula": "E = K×W×sinα - W×cosα×tanφ - c×L",
+    "description": "计算抗滑桩需要承受的滑坡推力",
+    "params": [
+      {
+        "name": "K",
+        "description": "安全系数"
+      },
+      {
+        "name": "W",
+        "description": "滑体重量"
+      },
+      {
+        "name": "α",
+        "description": "滑面倾角"
+      },
+      {
+        "name": "φ",
+        "description": "滑面内摩擦角"
+      },
+      {
+        "name": "c",
+        "description": "滑面黏聚力"
+      },
+      {
+        "name": "L",
+        "description": "滑面长度"
+      }
+    ],
+    "category": "支护设计",
+    "keywords": [
+      "抗滑桩",
+      "推力",
+      "滑坡",
+      "设计"
+    ],
+    "source": "边坡与滑坡工程治理第8章"
+  },
+  {
+    "id": "formula-retaining-wall",
+    "name": "挡土墙稳定性验算",
+    "formula": "Ks = (W×a + Ep×b) / (Ea×h)",
+    "description": "挡土墙抗倾覆稳定性验算公式",
+    "params": [
+      {
+        "name": "W",
+        "description": "挡土墙自重"
+      },
+      {
+        "name": "a",
+        "description": "自重力臂"
+      },
+      {
+        "name": "Ep",
+        "description": "被动土压力"
+      },
+      {
+        "name": "b",
+        "description": "被动土压力力臂"
+      },
+      {
+        "name": "Ea",
+        "description": "主动土压力"
+      },
+      {
+        "name": "h",
+        "description": "主动土压力力臂"
+      }
+    ],
+    "category": "支护设计",
+    "keywords": [
+      "挡土墙",
+      "稳定性",
+      "验算",
+      "抗倾覆"
+    ],
+    "source": "边坡与滑坡工程治理第7章"
+  },
+  {
+    "id": "formula-fellenius",
+    "name": "Fellenius法（瑞典条分法）",
+    "formula": "Fs = Σ[Ri] / Σ[Ti] = Σ[ci×li + (Wi×cosαi - ui×li)×tanφi] / Σ[Wi×sinαi]",
+    "description": "最简单的条分法，不考虑条间力",
+    "params": [
+      {
+        "name": "ci",
+        "description": "第i土条黏聚力",
+        "unit": "kPa"
+      },
+      {
+        "name": "li",
+        "description": "第i土条底边长度",
+        "unit": "m"
+      },
+      {
+        "name": "Wi",
+        "description": "第i土条重量",
+        "unit": "kN/m"
+      },
+      {
+        "name": "αi",
+        "description": "第i土条底边倾角",
+        "unit": "°"
+      },
+      {
+        "name": "ui",
+        "description": "第i土条孔隙水压力",
+        "unit": "kPa"
+      },
+      {
+        "name": "φi",
+        "description": "第i土条内摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "Fellenius",
+      "瑞典",
+      "条分法",
+      "稳定性"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-morgenstern-price",
+    "name": "Morgenstern-Price法",
+    "formula": "Fs = Σ[ci×bi + (Ni - ui×bi)×tanφi] / Σ[Ni×sinαi]",
+    "description": "严格条分法，考虑条间力，适用于任意滑动面",
+    "params": [
+      {
+        "name": "ci",
+        "description": "第i土条黏聚力",
+        "unit": "kPa"
+      },
+      {
+        "name": "bi",
+        "description": "第i土条宽度",
+        "unit": "m"
+      },
+      {
+        "name": "Ni",
+        "description": "第i土条法向力",
+        "unit": "kN/m"
+      },
+      {
+        "name": "ui",
+        "description": "第i土条孔隙水压力",
+        "unit": "kPa"
+      },
+      {
+        "name": "φi",
+        "description": "第i土条内摩擦角",
+        "unit": "°"
+      },
+      {
+        "name": "αi",
+        "description": "第i土条底边倾角",
+        "unit": "°"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "Morgenstern",
+      "Price",
+      "条分法",
+      "严格"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-stability-under-rainfall",
+    "name": "降雨入渗边坡稳定性",
+    "formula": "Fs = Fs0 - ΔFs = Fs0 - (γw×i×L×sinβ) / (γ×H×cosβ×tanφ)",
+    "description": "降雨入渗对边坡稳定性的影响估算",
+    "params": [
+      {
+        "name": "Fs0",
+        "description": "初始安全系数"
+      },
+      {
+        "name": "γw",
+        "description": "水的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "i",
+        "description": "降雨强度",
+        "unit": "m/s"
+      },
+      {
+        "name": "L",
+        "description": "坡面长度",
+        "unit": "m"
+      },
+      {
+        "name": "β",
+        "description": "坡角",
+        "unit": "°"
+      },
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "H",
+        "description": "边坡高度",
+        "unit": "m"
+      },
+      {
+        "name": "φ",
+        "description": "内摩擦角",
+        "unit": "°"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "降雨",
+      "入渗",
+      "稳定性",
+      "边坡"
+    ],
+    "source": "边坡与滑坡工程治理第5章"
+  },
+  {
+    "id": "formula-anti-slide-pile-spacing",
+    "name": "抗滑桩间距",
+    "formula": "D = (2~3)×d",
+    "description": "抗滑桩中心间距取值范围",
+    "params": [
+      {
+        "name": "d",
+        "description": "桩径",
+        "unit": "m"
+      }
+    ],
+    "category": "支护设计",
+    "keywords": [
+      "抗滑桩",
+      "间距",
+      "设计",
+      "布置"
+    ],
+    "source": "边坡与滑坡工程治理第8章"
+  },
+  {
+    "id": "formula-landslide-thrust-distribution",
+    "name": "滑坡推力分布",
+    "formula": "Ei = Ei-1×cos(αi-1-αi) - Ei-1×sin(αi-1-αi)×tanφi + K×Wi×sinαi - Wi×cosαi×tanφi - ci×li",
+    "description": "滑坡推力逐条传递计算",
+    "params": [
+      {
+        "name": "Ei-1",
+        "description": "上一条滑坡推力",
+        "unit": "kN/m"
+      },
+      {
+        "name": "αi-1",
+        "description": "上一条底边倾角",
+        "unit": "°"
+      },
+      {
+        "name": "αi",
+        "description": "本条底边倾角",
+        "unit": "°"
+      },
+      {
+        "name": "φi",
+        "description": "本条内摩擦角",
+        "unit": "°"
+      },
+      {
+        "name": "K",
+        "description": "安全系数"
+      },
+      {
+        "name": "Wi",
+        "description": "本条重量",
+        "unit": "kN/m"
+      },
+      {
+        "name": "ci",
+        "description": "本条黏聚力",
+        "unit": "kPa"
+      },
+      {
+        "name": "li",
+        "description": "本条底边长度",
+        "unit": "m"
+      }
+    ],
+    "category": "支护设计",
+    "keywords": [
+      "滑坡",
+      "推力",
+      "传递",
+      "计算"
+    ],
+    "source": "边坡与滑坡工程治理第6章"
+  }
+]

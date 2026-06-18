@@ -1,0 +1,65 @@
+<!-- 公式计算页面 -->
+<view class="container" wx:if="{{formula}}">
+  <!-- 公式标题 -->
+  <view class="header">
+    <view class="title">{{formula.title}}</view>
+    <t-tag variant="light" theme="primary" size="small">{{formula.category}}</t-tag>
+  </view>
+
+  <!-- 公式展示 -->
+  <view class="formula-section">
+    <view class="section-title">计算公式</view>
+    <view class="formula-box">
+      <text class="formula-text">{{formula.formula}}</text>
+    </view>
+    <view class="formula-desc" wx:if="{{formula.description}}">
+      {{formula.description}}
+    </view>
+  </view>
+
+  <!-- 参数输入 -->
+  <view class="params-section" wx:if="{{formula.params}}">
+    <view class="section-title">输入参数</view>
+    <view class="param-input" wx:for="{{formula.params}}" wx:key="name">
+      <view class="param-label">
+        <text class="param-name">{{item.name}}</text>
+        <text class="param-unit" wx:if="{{item.unit}}">({{item.unit}})</text>
+      </view>
+      <t-input
+        placeholder="请输入{{item.name}}"
+        value="{{inputs[item.name]}}"
+        bind:change="onInputChange"
+        data-field="{{item.name}}"
+        type="digit"
+      />
+      <view class="param-hint" wx:if="{{item.hint}}">{{item.hint}}</view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <t-button block theme="primary" bind:tap="onCalculate">计算</t-button>
+    <t-button block variant="outline" bind:tap="onReset">重置</t-button>
+  </view>
+
+  <!-- 计算结果 -->
+  <view class="result-section" wx:if="{{result}}">
+    <view class="section-title">计算结果</view>
+    <view class="result-box">
+      <view class="result-item" wx:if="{{result.value}}">
+        <text class="result-label">结果：</text>
+        <text class="result-value">{{result.value}}</text>
+        <text class="result-unit" wx:if="{{result.unit}}">{{result.unit}}</text>
+      </view>
+      <view class="result-message" wx:if="{{result.message}}">
+        {{result.message}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 空状态 -->
+<view class="empty" wx:else>
+  <t-icon name="info-circle" size="80rpx" color="#ccc" />
+  <text class="empty-text">未找到公式</text>
+</view>

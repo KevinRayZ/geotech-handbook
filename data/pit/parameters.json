@@ -1,0 +1,137 @@
+[
+  {
+    "id": "param-soil-density",
+    "name": "土的重度",
+    "symbol": "γ",
+    "value": "18-22",
+    "unit": "kN/m³",
+    "description": "土的单位体积重量，是土压力计算的基本参数",
+    "typicalValues": {
+      "砂土": "18-20",
+      "黏土": "19-21",
+      "粉土": "18-20"
+    },
+    "keywords": ["重度", "密度", "容重"],
+    "source": "基坑工程手册第3章"
+  },
+  {
+    "id": "param-internal-friction",
+    "name": "内摩擦角",
+    "symbol": "φ",
+    "value": "20-40",
+    "unit": "°",
+    "description": "土的抗剪强度参数，影响土压力大小",
+    "typicalValues": {
+      "砂土": "28-38",
+      "黏土": "15-25",
+      "粉土": "22-30"
+    },
+    "keywords": ["摩擦角", "抗剪", "强度"],
+    "source": "基坑工程手册第3章"
+  },
+  {
+    "id": "param-cohesion",
+    "name": "黏聚力",
+    "symbol": "c",
+    "value": "10-50",
+    "unit": "kPa",
+    "description": "土的抗剪强度参数，影响土压力大小",
+    "typicalValues": {
+      "砂土": "0",
+      "黏土": "20-50",
+      "粉土": "10-30"
+    },
+    "keywords": ["黏聚力", "内聚力", "抗剪"],
+    "source": "基坑工程手册第3章"
+  },
+  {
+    "id": "param-modulus",
+    "name": "压缩模量",
+    "symbol": "Es",
+    "value": "5-30",
+    "unit": "MPa",
+    "description": "土的压缩性参数，影响基坑变形",
+    "typicalValues": {
+      "砂土": "15-30",
+      "黏土": "5-15",
+      "粉土": "8-20"
+    },
+    "keywords": ["模量", "压缩", "变形"],
+    "source": "基坑工程手册第3章"
+  },
+  {
+    "id": "param-permeability",
+    "name": "渗透系数",
+    "symbol": "k",
+    "value": "10⁻⁶-10⁻²",
+    "unit": "cm/s",
+    "description": "土的渗透性参数，影响降水设计",
+    "typicalValues": {
+      "砂土": "10⁻³-10⁻²",
+      "黏土": "10⁻⁷-10⁻⁶",
+      "粉土": "10⁻⁵-10⁻⁴"
+    },
+    "keywords": ["渗透", "系数", "透水"],
+    "source": "基坑工程手册第8章"
+  },
+  {
+    "id": "param-safety-factor-overturning",
+    "name": "抗倾覆安全系数",
+    "symbol": "Ks",
+    "value": "≥1.2",
+    "unit": "",
+    "description": "基坑支护结构抗倾覆稳定性验算的安全系数要求",
+    "keywords": ["安全系数", "抗倾覆", "稳定性"],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "param-safety-factor-heaving",
+    "name": "抗隆起安全系数",
+    "symbol": "Kh",
+    "value": "≥1.6",
+    "unit": "",
+    "description": "基坑底部抗隆起稳定性验算的安全系数要求",
+    "keywords": ["安全系数", "抗隆起", "稳定性"],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "param-safety-factor-piping",
+    "name": "抗管涌安全系数",
+    "symbol": "Kp",
+    "value": "≥1.5",
+    "unit": "",
+    "description": "基坑底部抗管涌稳定性验算的安全系数要求",
+    "keywords": ["安全系数", "抗管涌", "稳定性"],
+    "source": "基坑工程手册第5章"
+  },
+  {
+    "id": "param-displacement-top",
+    "name": "基坑顶部水平位移控制值",
+    "symbol": "δ",
+    "value": "0.1%-0.5%H",
+    "unit": "mm",
+    "description": "基坑顶部水平位移的控制标准",
+    "typicalValues": {
+      "一级基坑": "0.1%H",
+      "二级基坑": "0.3%H",
+      "三级基坑": "0.5%H"
+    },
+    "keywords": ["位移", "控制", "变形", "标准"],
+    "source": "基坑工程手册第7章"
+  },
+  {
+    "id": "param-settlement",
+    "name": "周边地表沉降控制值",
+    "symbol": "S",
+    "value": "10-30",
+    "unit": "mm",
+    "description": "基坑周边地表沉降的控制标准",
+    "typicalValues": {
+      "一级基坑": "10mm",
+      "二级基坑": "20mm",
+      "三级基坑": "30mm"
+    },
+    "keywords": ["沉降", "控制", "地表", "标准"],
+    "source": "基坑工程手册第7章"
+  }
+]

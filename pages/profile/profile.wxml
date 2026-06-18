@@ -1,0 +1,102 @@
+<!-- pages/profile/profile.wxml -->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-section card">
+    <view class="user-info">
+      <t-avatar 
+        size="120rpx" 
+        image="{{userInfo.avatarUrl || '/assets/icons/default-avatar.png'}}"
+        t-class="user-avatar"
+      />
+      <view class="user-detail">
+        <view class="user-name">{{userInfo.nickName || '岩土工程师'}}</view>
+        <view class="user-desc">专业岩土工程计算工具</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-section">
+    <!-- 我的项目 -->
+    <view class="menu-group card">
+      <t-cell 
+        title="我的项目" 
+        note="{{projectCount}}个项目"
+        arrow
+        bind:tap="goProjects"
+      >
+        <t-icon name="folder" slot="left-icon" size="40rpx" color="#0052D9" />
+      </t-cell>
+      <t-cell 
+        title="计算历史" 
+        note="{{historyCount}}条记录"
+        arrow
+        bind:tap="goHistory"
+      >
+        <t-icon name="time" slot="left-icon" size="40rpx" color="#00A870" />
+      </t-cell>
+      <t-cell 
+        title="我的收藏" 
+        note="{{favoriteCount}}个收藏"
+        arrow
+        bind:tap="goFavorites"
+      >
+        <t-icon name="heart" slot="left-icon" size="40rpx" color="#E34D59" />
+      </t-cell>
+    </view>
+
+    <!-- 工具与设置 -->
+    <view class="menu-group card">
+      <t-cell 
+        title="单位换算" 
+        arrow
+        bind:tap="goUnitConvert"
+      >
+        <t-icon name="swap" slot="left-icon" size="40rpx" color="#7B61FF" />
+      </t-cell>
+      <t-cell 
+        title="规范速查" 
+        arrow
+        bind:tap="goSpecCodes"
+      >
+        <t-icon name="book" slot="left-icon" size="40rpx" color="#ED7B2F" />
+      </t-cell>
+      <t-cell 
+        title="使用帮助" 
+        arrow
+        bind:tap="goHelp"
+      >
+        <t-icon name="help-circle" slot="left-icon" size="40rpx" color="#639922" />
+      </t-cell>
+    </view>
+
+    <!-- 关于 -->
+    <view class="menu-group card">
+      <t-cell 
+        title="意见反馈" 
+        arrow
+        bind:tap="goFeedback"
+      >
+        <t-icon name="chat" slot="left-icon" size="40rpx" color="#0052D9" />
+      </t-cell>
+      <t-cell 
+        title="关于我们" 
+        note="v{{version}}"
+        arrow
+        bind:tap="goAbout"
+      >
+        <t-icon name="info-circle" slot="left-icon" size="40rpx" color="#666" />
+      </t-cell>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <view class="footer-text">岩土工程随身手册</view>
+    <view class="footer-version">版本 {{version}}</view>
+    <view class="footer-copyright">基于5部权威岩土工程工具书</view>
+  </view>
+</view>
+
+<!-- 自定义tabBar -->
+<custom-tabbar />

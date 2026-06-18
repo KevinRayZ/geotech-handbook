@@ -1,0 +1,85 @@
+[
+  {
+    "id": "formula-porosity",
+    "name": "孔隙率",
+    "formula": "n = Vv/V × 100%",
+    "description": "土中孔隙体积与总体积之比，反映土的密实程度",
+    "params": [
+      {"name": "Vv", "description": "孔隙体积"},
+      {"name": "V", "description": "总体积"}
+    ],
+    "category": "物理性质",
+    "keywords": ["孔隙率", "孔隙", "密实", "物理"],
+    "source": "工程地质手册第2章"
+  },
+  {
+    "id": "formula-void-ratio",
+    "name": "孔隙比",
+    "formula": "e = Vv/Vs",
+    "description": "土中孔隙体积与固体颗粒体积之比",
+    "params": [
+      {"name": "Vv", "description": "孔隙体积"},
+      {"name": "Vs", "description": "固体颗粒体积"}
+    ],
+    "category": "物理性质",
+    "keywords": ["孔隙比", "孔隙", "颗粒", "物理"],
+    "source": "工程地质手册第2章"
+  },
+  {
+    "id": "formula-saturation",
+    "name": "饱和度",
+    "formula": "Sr = Vw/Vv × 100%",
+    "description": "土中水的体积与孔隙体积之比，反映土的含水状态",
+    "params": [
+      {"name": "Vw", "description": "水的体积"},
+      {"name": "Vv", "description": "孔隙体积"}
+    ],
+    "category": "物理性质",
+    "keywords": ["饱和度", "含水", "孔隙", "状态"],
+    "source": "工程地质手册第2章"
+  },
+  {
+    "id": "formula-moisture-content",
+    "name": "含水量",
+    "formula": "w = Mw/Ms × 100%",
+    "description": "土中水的质量与固体颗粒质量之比",
+    "params": [
+      {"name": "Mw", "description": "水的质量"},
+      {"name": "Ms", "description": "固体颗粒质量"}
+    ],
+    "category": "物理性质",
+    "keywords": ["含水量", "水分", "质量", "物理"],
+    "source": "工程地质手册第2章"
+  },
+  {
+    "id": "formula-density",
+    "name": "土的密度",
+    "formula": "ρ = M/V",
+    "description": "单位体积土的质量",
+    "params": [
+      {"name": "M", "description": "土的质量"},
+      {"name": "V", "description": "土的体积"}
+    ],
+    "category": "物理性质",
+    "keywords": ["密度", "质量", "体积", "物理"],
+    "source": "工程地质手册第2章"
+  },
+  {
+    "id": "formula-bearing-capacity",
+    "name": "地基承载力",
+    "formula": "fa = fak + ηb×γ×(b-3) + ηd×γm×(d-0.5)",
+    "description": "地基承载力特征值修正公式",
+    "params": [
+      {"name": "fak", "description": "承载力特征值"},
+      {"name": "ηb", "description": "宽度修正系数"},
+      {"name": "γ", "description": "基底以下土的重度"},
+      {"name": "b", "description": "基础宽度"},
+      {"name": "ηd", "description": "深度修正系数"},
+      {"name": "γm", "description": "基底以上土的加权平均重度"},
+      {"name": "d", "description": "基础埋深"}
+    ],
+    "category": "承载力",
+    "keywords": ["承载力", "地基", "修正", "特征值"],
+    "source": "工程地质手册第5章"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "name": "土的分类标准",
+  "source": "《工程地质手册》第五版 第一篇",
+  "standard": "GB 50021-2001",
+  "classifications": {
+    "gravelSoil": {
+      "name": "碎石土",
+      "definition": "粒径大于2mm的颗粒含量超过全重50%的土",
+      "items": [
+        { "name": "漂石", "shape": "圆形为主", "particle": ">200mm颗粒>50%" },
+        { "name": "块石", "shape": "棱角形为主", "particle": ">200mm颗粒>50%" },
+        { "name": "卵石", "shape": "圆形为主", "particle": ">20mm颗粒>50%" },
+        { "name": "碎石", "shape": "棱角形为主", "particle": ">20mm颗粒>50%" },
+        { "name": "圆砾", "shape": "圆形为主", "particle": ">2mm颗粒>50%" },
+        { "name": "角砾", "shape": "棱角形为主", "particle": ">2mm颗粒>50%" }
+      ]
+    },
+    "sand": {
+      "name": "砂土",
+      "definition": "粒径大于0.075mm的颗粒含量超过全重50%的土",
+      "items": [
+        { "name": "砾砂", "particle": ">2mm颗粒占25%~50%" },
+        { "name": "粗砂", "particle": ">0.5mm颗粒>50%" },
+        { "name": "中砂", "particle": ">0.25mm颗粒>50%" },
+        { "name": "细砂", "particle": ">0.075mm颗粒>85%" },
+        { "name": "粉砂", "particle": ">0.075mm颗粒>50%" }
+      ]
+    },
+    "siltAndClay": {
+      "name": "粉土与黏性土",
+      "items": [
+        { "name": "粉土", "Ip": "≤10", "particle": "粒径>0.075mm颗粒≤50%", "description": "塑性指数小于等于10" },
+        { "name": "粉质黏土", "Ip": "10~17", "description": "塑性指数大于10且小于等于17" },
+        { "name": "黏土", "Ip": ">17", "description": "塑性指数大于17" }
+      ]
+    },
+    "organicContent": {
+      "name": "按有机质含量分类",
+      "reference": "表1-3-18",
+      "items": [
+        { "name": "无机土", "Wu": "<5%", "description": "有机质含量小于5%" },
+        { "name": "有机质土", "Wu": "5%~10%", "description": "有机质含量5%~10%" },
+        { "name": "泥炭质土", "Wu": "10%~60%", "description": "有机质含量10%~60%" },
+        { "name": "泥炭", "Wu": ">60%", "description": "有机质含量大于60%" }
+      ]
+    }
+  }
+}

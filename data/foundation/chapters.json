@@ -1,0 +1,72 @@
+[
+  {
+    "id": "found-ch01",
+    "title": "地基处理概述",
+    "chapter": 1,
+    "summary": "地基处理目的、方法分类、适用条件",
+    "keywords": ["地基处理", "概述", "方法", "分类"]
+  },
+  {
+    "id": "found-ch02",
+    "title": "换填垫层法",
+    "chapter": 2,
+    "summary": "换填原理、设计计算、施工技术",
+    "keywords": ["换填", "垫层", "设计", "施工"]
+  },
+  {
+    "id": "found-ch03",
+    "title": "预压法",
+    "chapter": 3,
+    "summary": "堆载预压、真空预压、设计计算",
+    "keywords": ["预压", "堆载", "真空", "设计"]
+  },
+  {
+    "id": "found-ch04",
+    "title": "强夯法",
+    "chapter": 4,
+    "summary": "强夯原理、设计参数、施工工艺",
+    "keywords": ["强夯", "原理", "参数", "施工"]
+  },
+  {
+    "id": "found-ch05",
+    "title": "复合地基理论",
+    "chapter": 5,
+    "summary": "复合地基概念、承载机理、设计方法",
+    "keywords": ["复合地基", "理论", "承载", "设计"]
+  },
+  {
+    "id": "found-ch06",
+    "title": "深层搅拌法",
+    "chapter": 6,
+    "summary": "水泥土搅拌桩、设计计算、施工工艺",
+    "keywords": ["搅拌", "水泥土", "设计", "施工"]
+  },
+  {
+    "id": "found-ch07",
+    "title": "高压喷射注浆法",
+    "chapter": 7,
+    "summary": "旋喷桩原理、设计计算、施工工艺",
+    "keywords": ["旋喷", "注浆", "设计", "施工"]
+  },
+  {
+    "id": "found-ch08",
+    "title": "注浆法",
+    "chapter": 8,
+    "summary": "注浆原理、材料配比、施工工艺",
+    "keywords": ["注浆", "原理", "材料", "施工"]
+  },
+  {
+    "id": "found-ch09",
+    "title": "加筋法",
+    "chapter": 9,
+    "summary": "土工合成材料、加筋土、设计计算",
+    "keywords": ["加筋", "土工", "合成", "设计"]
+  },
+  {
+    "id": "found-ch10",
+    "title": "桩基工程",
+    "chapter": 10,
+    "summary": "桩基类型、设计计算、施工技术",
+    "keywords": ["桩基", "类型", "设计", "施工"]
+  }
+]

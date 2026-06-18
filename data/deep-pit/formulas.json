@@ -1,0 +1,294 @@
+[
+  {
+    "id": "formula-deep-pit-stability",
+    "name": "深基坑整体稳定性安全系数",
+    "formula": "Ks = Σ(抗滑力矩) / Σ(滑动力矩) ≥ 1.3",
+    "description": "深基坑整体稳定性验算的安全系数要求",
+    "params": [
+      {
+        "name": "抗滑力矩",
+        "description": "抵抗滑动的力矩"
+      },
+      {
+        "name": "滑动力矩",
+        "description": "促使滑动的力矩"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "深基坑",
+      "整体稳定性",
+      "安全系数",
+      "验算"
+    ],
+    "source": "深基坑工程设计施工手册第5章"
+  },
+  {
+    "id": "formula-deep-pit-heaving",
+    "name": "深基坑抗隆起安全系数",
+    "formula": "Kh = (γ×D×Nc + q) / (γ×H + q) ≥ 1.8",
+    "description": "深基坑底部抗隆起稳定性验算的安全系数要求",
+    "params": [
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      },
+      {
+        "name": "Nc",
+        "description": "承载力系数"
+      },
+      {
+        "name": "q",
+        "description": "地面超载",
+        "unit": "kPa"
+      },
+      {
+        "name": "H",
+        "description": "基坑深度",
+        "unit": "m"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "深基坑",
+      "抗隆起",
+      "安全系数",
+      "验算"
+    ],
+    "source": "深基坑工程设计施工手册第5章"
+  },
+  {
+    "id": "formula-deep-pit-piping",
+    "name": "深基坑抗管涌安全系数",
+    "formula": "Kp = (γw × h) / (γ × D) ≥ 1.5",
+    "description": "深基坑底部抗管涌稳定性验算的安全系数要求",
+    "params": [
+      {
+        "name": "γw",
+        "description": "水的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "h",
+        "description": "水头差",
+        "unit": "m"
+      },
+      {
+        "name": "γ",
+        "description": "土的重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      }
+    ],
+    "category": "稳定性",
+    "keywords": [
+      "深基坑",
+      "抗管涌",
+      "安全系数",
+      "验算"
+    ],
+    "source": "深基坑工程设计施工手册第5章"
+  },
+  {
+    "id": "formula-deep-pit-deformation",
+    "name": "深基坑变形估算",
+    "formula": "δ = α × β × γ × H / (E × D)",
+    "description": "深基坑变形估算的经验公式",
+    "params": [
+      {
+        "name": "α",
+        "description": "地质条件系数"
+      },
+      {
+        "name": "β",
+        "description": "支护结构刚度系数"
+      },
+      {
+        "name": "γ",
+        "description": "施工方法系数"
+      },
+      {
+        "name": "H",
+        "description": "基坑深度",
+        "unit": "m"
+      },
+      {
+        "name": "E",
+        "description": "土的压缩模量",
+        "unit": "MPa"
+      },
+      {
+        "name": "D",
+        "description": "支护结构入土深度",
+        "unit": "m"
+      }
+    ],
+    "category": "变形",
+    "keywords": [
+      "深基坑",
+      "变形",
+      "估算",
+      "经验"
+    ],
+    "source": "深基坑工程设计施工手册第6章"
+  },
+  {
+    "id": "formula-deep-pit-dewatering",
+    "name": "深基坑降水井出水量",
+    "formula": "Q = 2πk×H×s / ln(R/r) × F",
+    "description": "深基坑降水井出水量计算公式",
+    "params": [
+      {
+        "name": "k",
+        "description": "渗透系数",
+        "unit": "m/d"
+      },
+      {
+        "name": "H",
+        "description": "含水层厚度",
+        "unit": "m"
+      },
+      {
+        "name": "s",
+        "description": "降深",
+        "unit": "m"
+      },
+      {
+        "name": "R",
+        "description": "影响半径",
+        "unit": "m"
+      },
+      {
+        "name": "r",
+        "description": "井半径",
+        "unit": "m"
+      },
+      {
+        "name": "F",
+        "description": "群井干扰系数"
+      }
+    ],
+    "category": "降水",
+    "keywords": [
+      "深基坑",
+      "降水",
+      "出水量",
+      "计算"
+    ],
+    "source": "深基坑工程设计施工手册第4章"
+  },
+  {
+    "id": "deep-pit-formula-1",
+    "name": "深基坑公式1",
+    "formula": "K0 = 1 - sinφ",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-2",
+    "name": "深基坑公式2",
+    "formula": "Kh = k × b × h",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-3",
+    "name": "深基坑公式3",
+    "formula": "Fs = (γ × t × Nq + c × Nc) / (γ × h + q)",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-4",
+    "name": "深基坑公式4",
+    "formula": "Nq = e^(π×tanφ) × tan²(45° + φ/2)",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-5",
+    "name": "深基坑公式5",
+    "formula": "Fs = Mp / Mo",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-6",
+    "name": "深基坑公式6",
+    "formula": "Fs = Fp / Fo",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-7",
+    "name": "深基坑公式7",
+    "formula": "Fs = (γ' × t) / (γw × hw)",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  },
+  {
+    "id": "deep-pit-formula-8",
+    "name": "深基坑公式8",
+    "formula": "Fs = (γ × t) / (γw × h)",
+    "description": "深基坑工程设计施工手册公式",
+    "params": [],
+    "category": "深基坑",
+    "keywords": [
+      "深基坑",
+      "公式"
+    ],
+    "source": "深基坑工程设计施工手册"
+  }
+]

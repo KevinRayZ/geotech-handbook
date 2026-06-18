@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "custom-tabbar": "../../components/custom-tabbar/custom-tabbar",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-divider": "tdesign-miniprogram/divider/divider",
+    "t-button": "tdesign-miniprogram/button/button"
+  },
+  "navigationBarTitleText": "我的"
+}

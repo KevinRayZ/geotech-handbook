@@ -1,0 +1,60 @@
+<!-- 知识详情页面 -->
+<view class="container" wx:if="{{knowledge}}">
+  <!-- 标题区域 -->
+  <view class="header">
+    <view class="title">{{knowledge.title}}</view>
+    <view class="meta">
+      <t-tag variant="light" theme="primary" size="small">{{knowledge.category}}</t-tag>
+      <text class="source" wx:if="{{knowledge.source}}">{{knowledge.source}}</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content">
+    <!-- 公式 -->
+    <view class="formula-section" wx:if="{{knowledge.formula}}">
+      <view class="section-title">计算公式</view>
+      <view class="formula-box">
+        <text class="formula-text">{{knowledge.formula}}</text>
+      </view>
+    </view>
+
+    <!-- 说明 -->
+    <view class="desc-section" wx:if="{{knowledge.description}}">
+      <view class="section-title">详细说明</view>
+      <view class="desc-text">{{knowledge.description}}</view>
+    </view>
+
+    <!-- 参数说明 -->
+    <view class="params-section" wx:if="{{knowledge.params}}">
+      <view class="section-title">参数说明</view>
+      <view class="param-item" wx:for="{{knowledge.params}}" wx:key="name">
+        <view class="param-name">{{item.name}}</view>
+        <view class="param-desc">{{item.description}}</view>
+      </view>
+    </view>
+
+    <!-- 适用条件 -->
+    <view class="condition-section" wx:if="{{knowledge.conditions}}">
+      <view class="section-title">适用条件</view>
+      <view class="condition-list">
+        <view class="condition-item" wx:for="{{knowledge.conditions}}" wx:key="*this">
+          <t-icon name="check-circle" size="32rpx" color="#00A870" />
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 参考文献 -->
+    <view class="reference-section" wx:if="{{knowledge.reference}}">
+      <view class="section-title">参考文献</view>
+      <view class="reference-text">{{knowledge.reference}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 空状态 -->
+<view class="empty" wx:else>
+  <t-icon name="info-circle" size="80rpx" color="#ccc" />
+  <text class="empty-text">未找到知识详情</text>
+</view>

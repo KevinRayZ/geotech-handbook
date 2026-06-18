@@ -1,0 +1,79 @@
+[
+  {
+    "id": "param-composite-bearing",
+    "name": "复合地基承载力特征值",
+    "symbol": "fspk",
+    "value": "100-500",
+    "unit": "kPa",
+    "description": "复合地基承载力特征值，由桩和桩间土共同承担",
+    "typicalValues": {
+      "水泥土搅拌桩": "100-200",
+      "CFG桩": "200-400",
+      "预应力管桩": "300-500"
+    },
+    "keywords": ["复合地基", "承载力", "特征值", "桩"],
+    "source": "地基处理手册第5章"
+  },
+  {
+    "id": "param-replacement-ratio",
+    "name": "面积置换率",
+    "symbol": "m",
+    "value": "0.1-0.4",
+    "unit": "",
+    "description": "桩的截面积与单桩承担的处理面积之比",
+    "typicalValues": {
+      "水泥土搅拌桩": "0.15-0.25",
+      "CFG桩": "0.05-0.15",
+      "预应力管桩": "0.03-0.08"
+    },
+    "keywords": ["置换率", "面积", "桩", "复合地基"],
+    "source": "地基处理手册第5章"
+  },
+  {
+    "id": "param-settlement-allowable",
+    "name": "允许沉降量",
+    "symbol": "s",
+    "value": "10-300",
+    "unit": "mm",
+    "description": "建筑物地基允许的最大沉降量",
+    "typicalValues": {
+      "框架结构": "100-200",
+      "砌体结构": "50-100",
+      "高层建筑": "50-150",
+      "工业厂房": "100-300"
+    },
+    "keywords": ["沉降", "允许", "地基", "建筑物"],
+    "source": "地基处理手册第4章"
+  },
+  {
+    "id": "param-dynamic-compaction-energy",
+    "name": "强夯单击夯击能",
+    "symbol": "E",
+    "value": "1000-8000",
+    "unit": "kN·m",
+    "description": "强夯施工时单次夯击的能量",
+    "typicalValues": {
+      "低能量": "1000-2000",
+      "中能量": "2000-4000",
+      "高能量": "4000-6000",
+      "超高能量": "6000-8000"
+    },
+    "keywords": ["强夯", "夯击能", "能量", "施工"],
+    "source": "地基处理手册第6章"
+  },
+  {
+    "id": "param-grouting-pressure",
+    "name": "注浆压力",
+    "symbol": "P",
+    "value": "0.2-1.0",
+    "unit": "MPa",
+    "description": "注浆施工时的注浆压力",
+    "typicalValues": {
+      "渗透注浆": "0.2-0.5",
+      "劈裂注浆": "0.5-1.0",
+      "压密注浆": "0.3-0.8"
+    },
+    "keywords": ["注浆", "压力", "施工", "参数"],
+    "source": "地基处理手册第8章"
+  }
+]

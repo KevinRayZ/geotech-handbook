@@ -1,0 +1,64 @@
+[
+  {
+    "id": "param-deep-pit-depth",
+    "name": "深基坑深度",
+    "symbol": "H",
+    "value": "10-30",
+    "unit": "m",
+    "description": "深度超过5m或地质条件复杂的基坑称为深基坑",
+    "typicalValues": {
+      "一般深基坑": "10-15m",
+      "较深基坑": "15-20m",
+      "超深基坑": "20-30m",
+      "特深基坑": ">30m"
+    },
+    "keywords": ["深度", "深基坑", "定义", "分类"],
+    "source": "深基坑工程设计施工手册第1章"
+  },
+  {
+    "id": "param-deep-pit-displacement",
+    "name": "深基坑变形控制值",
+    "symbol": "δ",
+    "value": "0.1%-0.3%H",
+    "unit": "mm",
+    "description": "深基坑变形控制标准比一般基坑更严格",
+    "typicalValues": {
+      "一级基坑": "0.1%H",
+      "二级基坑": "0.2%H",
+      "三级基坑": "0.3%H"
+    },
+    "keywords": ["变形", "控制", "深基坑", "标准"],
+    "source": "深基坑工程设计施工手册第6章"
+  },
+  {
+    "id": "param-deep-pit-support-stiffness",
+    "name": "支护结构刚度",
+    "symbol": "EI",
+    "value": "100-1000",
+    "unit": "MN·m²/m",
+    "description": "支护结构的抗弯刚度，影响基坑变形",
+    "typicalValues": {
+      "钢板桩": "100-300",
+      "钻孔灌注桩": "300-600",
+      "地下连续墙": "500-1000"
+    },
+    "keywords": ["刚度", "支护", "结构", "变形"],
+    "source": "深基坑工程设计施工手册第2章"
+  },
+  {
+    "id": "param-deep-pit-support-spacing",
+    "name": "支撑道数",
+    "symbol": "n",
+    "value": "2-6",
+    "unit": "道",
+    "description": "深基坑支撑道数根据深度和地质条件确定",
+    "typicalValues": {
+      "10-15m": "2-3道",
+      "15-20m": "3-4道",
+      "20-25m": "4-5道",
+      "25-30m": "5-6道"
+    },
+    "keywords": ["支撑", "道数", "深基坑", "设计"],
+    "source": "深基坑工程设计施工手册第3章"
+  }
+]

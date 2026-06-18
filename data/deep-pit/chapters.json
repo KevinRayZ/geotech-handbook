@@ -1,0 +1,65 @@
+[
+  {
+    "id": "deep-pit-ch01",
+    "title": "深基坑工程概述",
+    "chapter": 1,
+    "summary": "深基坑定义、特点、发展历史",
+    "keywords": ["深基坑", "概述", "定义", "特点"]
+  },
+  {
+    "id": "deep-pit-ch02",
+    "title": "深基坑围护结构设计",
+    "chapter": 2,
+    "summary": "围护结构类型、设计方法、计算理论",
+    "keywords": ["围护", "结构", "设计", "计算"]
+  },
+  {
+    "id": "deep-pit-ch03",
+    "title": "深基坑支撑体系设计",
+    "chapter": 3,
+    "summary": "支撑类型、设计计算、施工技术",
+    "keywords": ["支撑", "体系", "设计", "施工"]
+  },
+  {
+    "id": "deep-pit-ch04",
+    "title": "深基坑地下水控制",
+    "chapter": 4,
+    "summary": "降水设计、止水措施、渗流分析",
+    "keywords": ["地下水", "控制", "降水", "止水"]
+  },
+  {
+    "id": "deep-pit-ch05",
+    "title": "深基坑稳定性分析",
+    "chapter": 5,
+    "summary": "整体稳定性、局部稳定性、验算方法",
+    "keywords": ["稳定性", "分析", "验算", "方法"]
+  },
+  {
+    "id": "deep-pit-ch06",
+    "title": "深基坑变形控制",
+    "chapter": 6,
+    "summary": "变形机理、控制标准、技术措施",
+    "keywords": ["变形", "控制", "标准", "措施"]
+  },
+  {
+    "id": "deep-pit-ch07",
+    "title": "深基坑施工技术",
+    "chapter": 7,
+    "summary": "开挖方法、支护施工、质量控制",
+    "keywords": ["施工", "技术", "开挖", "支护"]
+  },
+  {
+    "id": "deep-pit-ch08",
+    "title": "深基坑监测与信息化施工",
+    "chapter": 8,
+    "summary": "监测项目、预警指标、信息化施工",
+    "keywords": ["监测", "信息化", "预警", "施工"]
+  },
+  {
+    "id": "deep-pit-ch09",
+    "title": "深基坑工程案例",
+    "chapter": 9,
+    "summary": "典型工程案例、经验总结、教训",
+    "keywords": ["案例", "工程", "经验", "教训"]
+  }
+]

@@ -1,0 +1,114 @@
+<!-- pages/calculator/calculator.wxml -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-section">
+    <t-search 
+      placeholder="搜索计算器..."
+      shape="round"
+      value="{{searchKeyword}}"
+      bind:change="onSearchChange"
+      bind:clear="onSearchClear"
+    />
+  </view>
+
+  <!-- 计算器分类列表 -->
+  <view class="calc-categories">
+    <!-- 基坑工程计算器 -->
+    <view class="category-section">
+      <view class="category-header">
+        <view class="category-icon" style="background-color: #E6F1FB;">
+          <t-icon name="building" size="40rpx" style="color: #0052D9;" />
+        </view>
+        <view class="category-title">基坑工程</view>
+      </view>
+      <view class="calc-list">
+        <view 
+          class="calc-item" 
+          wx:for="{{pitCalculators}}" 
+          wx:key="id"
+          bind:tap="goCalc"
+          data-id="{{item.id}}"
+          wx:if="{{item.visible}}"
+        >
+          <view class="calc-icon">
+            <t-icon name="{{item.icon}}" size="48rpx" />
+          </view>
+          <view class="calc-info">
+            <view class="calc-name">{{item.name}}</view>
+            <view class="calc-desc">{{item.description}}</view>
+          </view>
+          <t-icon name="chevron-right" size="40rpx" color="#999" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 边坡工程计算器 -->
+    <view class="category-section">
+      <view class="category-header">
+        <view class="category-icon" style="background-color: #E1F5EE;">
+          <t-icon name="landscape" size="40rpx" style="color: #00A870;" />
+        </view>
+        <view class="category-title">边坡工程</view>
+      </view>
+      <view class="calc-list">
+        <view 
+          class="calc-item" 
+          wx:for="{{slopeCalculators}}" 
+          wx:key="id"
+          bind:tap="goCalc"
+          data-id="{{item.id}}"
+          wx:if="{{item.visible}}"
+        >
+          <view class="calc-icon">
+            <t-icon name="{{item.icon}}" size="48rpx" />
+          </view>
+          <view class="calc-info">
+            <view class="calc-name">{{item.name}}</view>
+            <view class="calc-desc">{{item.description}}</view>
+          </view>
+          <t-icon name="chevron-right" size="40rpx" color="#999" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 地基处理计算器 -->
+    <view class="category-section">
+      <view class="category-header">
+        <view class="category-icon" style="background-color: #FAEEDA;">
+          <t-icon name="root" size="40rpx" style="color: #ED7B2F;" />
+        </view>
+        <view class="category-title">地基处理</view>
+      </view>
+      <view class="calc-list">
+        <view 
+          class="calc-item" 
+          wx:for="{{foundationCalculators}}" 
+          wx:key="id"
+          bind:tap="goCalc"
+          data-id="{{item.id}}"
+          wx:if="{{item.visible}}"
+        >
+          <view class="calc-icon">
+            <t-icon name="{{item.icon}}" size="48rpx" />
+          </view>
+          <view class="calc-info">
+            <view class="calc-name">{{item.name}}</view>
+            <view class="calc-desc">{{item.description}}</view>
+          </view>
+          <t-icon name="chevron-right" size="40rpx" color="#999" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 即将推出 -->
+  <view class="coming-soon card">
+    <view class="section-title">即将推出</view>
+    <view class="coming-list">
+      <t-cell title="土钉墙设计" note="v1.1版本" />
+      <t-cell title="锚杆设计" note="v1.1版本" />
+      <t-cell title="排水设计" note="v1.2版本" />
+      <t-cell title="强夯参数计算" note="v1.2版本" />
+    </view>
+  </view>
+</view>

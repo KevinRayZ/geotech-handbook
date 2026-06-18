@@ -1,0 +1,348 @@
+[
+  {
+    "id": "formula-composite-bearing",
+    "name": "复合地基承载力",
+    "formula": "fspk = m×Ra/Ap + β×(1-m)×fsk",
+    "description": "复合地基承载力特征值计算公式",
+    "params": [
+      {
+        "name": "m",
+        "description": "面积置换率"
+      },
+      {
+        "name": "Ra",
+        "description": "单桩竖向承载力特征值"
+      },
+      {
+        "name": "Ap",
+        "description": "桩的截面积"
+      },
+      {
+        "name": "β",
+        "description": "桩间土承载力折减系数"
+      },
+      {
+        "name": "fsk",
+        "description": "桩间土承载力特征值"
+      }
+    ],
+    "category": "复合地基",
+    "keywords": [
+      "复合地基",
+      "承载力",
+      "置换率",
+      "桩"
+    ],
+    "source": "地基处理手册第3章"
+  },
+  {
+    "id": "formula-single-pile-bearing",
+    "name": "单桩竖向承载力",
+    "formula": "Ra = Up×Σqsi×li + qp×Ap",
+    "description": "单桩竖向承载力特征值计算公式",
+    "params": [
+      {
+        "name": "Up",
+        "description": "桩的周长"
+      },
+      {
+        "name": "qsi",
+        "description": "第i层土的侧阻力特征值"
+      },
+      {
+        "name": "li",
+        "description": "第i层土的厚度"
+      },
+      {
+        "name": "qp",
+        "description": "桩端阻力特征值"
+      },
+      {
+        "name": "Ap",
+        "description": "桩的截面积"
+      }
+    ],
+    "category": "桩基",
+    "keywords": [
+      "单桩",
+      "承载力",
+      "侧阻",
+      "端阻"
+    ],
+    "source": "地基处理手册第3章"
+  },
+  {
+    "id": "formula-settlement",
+    "name": "地基沉降计算",
+    "formula": "s = ψsp×Σ(Δspi)",
+    "description": "复合地基沉降计算公式",
+    "params": [
+      {
+        "name": "ψsp",
+        "description": "沉降计算经验系数"
+      },
+      {
+        "name": "Δspi",
+        "description": "第i层土的压缩量"
+      }
+    ],
+    "category": "沉降",
+    "keywords": [
+      "沉降",
+      "压缩",
+      "变形",
+      "计算"
+    ],
+    "source": "地基处理手册第4章"
+  },
+  {
+    "id": "formula-replacement-ratio",
+    "name": "面积置换率",
+    "formula": "m = Ap/A",
+    "description": "复合地基面积置换率计算公式",
+    "params": [
+      {
+        "name": "Ap",
+        "description": "桩的截面积"
+      },
+      {
+        "name": "A",
+        "description": "单桩承担的处理面积"
+      }
+    ],
+    "category": "复合地基",
+    "keywords": [
+      "置换率",
+      "面积",
+      "复合地基",
+      "桩"
+    ],
+    "source": "地基处理手册第3章"
+  },
+  {
+    "id": "formula-dynamic-compaction",
+    "name": "强夯有效加固深度",
+    "formula": "H = α×√(M×h/10)",
+    "description": "强夯法有效加固深度估算公式",
+    "params": [
+      {
+        "name": "α",
+        "description": "修正系数，一般取0.5-0.8"
+      },
+      {
+        "name": "M",
+        "description": "锤重",
+        "unit": "kN"
+      },
+      {
+        "name": "h",
+        "description": "落距",
+        "unit": "m"
+      }
+    ],
+    "category": "强夯",
+    "keywords": [
+      "强夯",
+      "加固深度",
+      "锤重",
+      "落距"
+    ],
+    "source": "地基处理手册第6章"
+  },
+  {
+    "id": "formula-grouting-pressure",
+    "name": "注浆压力计算",
+    "formula": "P = γ×h + ΔP",
+    "description": "注浆压力计算公式",
+    "params": [
+      {
+        "name": "γ",
+        "description": "浆液重度",
+        "unit": "kN/m³"
+      },
+      {
+        "name": "h",
+        "description": "注浆深度",
+        "unit": "m"
+      },
+      {
+        "name": "ΔP",
+        "description": "附加压力",
+        "unit": "kPa"
+      }
+    ],
+    "category": "注浆",
+    "keywords": [
+      "注浆",
+      "压力",
+      "浆液",
+      "深度"
+    ],
+    "source": "地基处理手册第8章"
+  },
+  {
+    "id": "formula-cement-mixing-bearing",
+    "name": "水泥土搅拌桩承载力",
+    "formula": "Ra = η×fcu×Ap",
+    "description": "水泥土搅拌桩单桩承载力特征值计算",
+    "params": [
+      {
+        "name": "η",
+        "description": "强度折减系数，一般取0.2-0.3"
+      },
+      {
+        "name": "fcu",
+        "description": "水泥土立方体抗压强度",
+        "unit": "kPa"
+      },
+      {
+        "name": "Ap",
+        "description": "桩截面积",
+        "unit": "m²"
+      }
+    ],
+    "category": "复合地基",
+    "keywords": [
+      "水泥土",
+      "搅拌桩",
+      "承载力",
+      "计算"
+    ],
+    "source": "地基处理手册第6章"
+  },
+  {
+    "id": "formula-cfg-bearing",
+    "name": "CFG桩承载力",
+    "formula": "Ra = Up×Σqsi×li + qp×Ap",
+    "description": "CFG桩单桩承载力特征值计算",
+    "params": [
+      {
+        "name": "Up",
+        "description": "桩周长",
+        "unit": "m"
+      },
+      {
+        "name": "qsi",
+        "description": "第i层土侧阻力特征值",
+        "unit": "kPa"
+      },
+      {
+        "name": "li",
+        "description": "第i层土厚度",
+        "unit": "m"
+      },
+      {
+        "name": "qp",
+        "description": "桩端阻力特征值",
+        "unit": "kPa"
+      },
+      {
+        "name": "Ap",
+        "description": "桩截面积",
+        "unit": "m²"
+      }
+    ],
+    "category": "复合地基",
+    "keywords": [
+      "CFG桩",
+      "承载力",
+      "计算",
+      "桩基"
+    ],
+    "source": "地基处理手册第5章"
+  },
+  {
+    "id": "formula-preloading-consolidation",
+    "name": "预压固结度",
+    "formula": "Ut = 1 - exp(-8×T/π²)",
+    "description": "一维固结理论计算固结度",
+    "params": [
+      {
+        "name": "T",
+        "description": "时间因数，T = Cv×t/H²"
+      },
+      {
+        "name": "Cv",
+        "description": "固结系数",
+        "unit": "cm²/s"
+      },
+      {
+        "name": "t",
+        "description": "固结时间",
+        "unit": "s"
+      },
+      {
+        "name": "H",
+        "description": "排水距离",
+        "unit": "cm"
+      }
+    ],
+    "category": "预压法",
+    "keywords": [
+      "预压",
+      "固结",
+      "固结度",
+      "计算"
+    ],
+    "source": "地基处理手册第3章"
+  },
+  {
+    "id": "formula-vacuum-preloading",
+    "name": "真空预压等效荷载",
+    "formula": "q = P0 - Pv",
+    "description": "真空预压等效堆载荷载计算",
+    "params": [
+      {
+        "name": "P0",
+        "description": "大气压力",
+        "unit": "kPa"
+      },
+      {
+        "name": "Pv",
+        "description": "膜下真空度",
+        "unit": "kPa"
+      }
+    ],
+    "category": "预压法",
+    "keywords": [
+      "真空",
+      "预压",
+      "等效",
+      "荷载"
+    ],
+    "source": "地基处理手册第3章"
+  },
+  {
+    "id": "formula-grouting-volume",
+    "name": "注浆量计算",
+    "formula": "Q = V×n×α×(1+β)",
+    "description": "注浆量计算公式",
+    "params": [
+      {
+        "name": "V",
+        "description": "加固土体体积",
+        "unit": "m³"
+      },
+      {
+        "name": "n",
+        "description": "孔隙率"
+      },
+      {
+        "name": "α",
+        "description": "浆液填充率"
+      },
+      {
+        "name": "β",
+        "description": "浆液损耗系数"
+      }
+    ],
+    "category": "注浆法",
+    "keywords": [
+      "注浆",
+      "注浆量",
+      "计算",
+      "加固"
+    ],
+    "source": "地基处理手册第8章"
+  }
+]

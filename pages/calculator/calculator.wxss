@@ -1,0 +1,102 @@
+/* pages/calculator/calculator.wxss */
+
+.container {
+  padding: 24rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 搜索栏 */
+.search-section {
+  margin-bottom: 24rpx;
+}
+
+/* 计算器分类 */
+.calc-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.category-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.category-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+}
+
+.category-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.calc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.calc-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+}
+
+.calc-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  background-color: #E8F0FE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.calc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.calc-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.calc-desc {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 即将推出 */
+.coming-soon {
+  margin-top: 32rpx;
+}
+
+.coming-list {
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
