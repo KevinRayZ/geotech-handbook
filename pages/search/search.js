@@ -1,9 +1,10 @@
 /**
  * 快捷查询页面
- * 集成AI API提供智能搜索功能
+ * 集成AI API、规范查询、专家匹配
  */
 const { searchKnowledge, getKnowledgeData } = require('../../core/knowledge/index');
 const { intelligentSearch, generateSuggestions, testConnection } = require('../../core/ai/ai-service');
+const { getExpertList } = require('../../core/experts/expert-service');
 
 Page({
   data: {
@@ -18,8 +19,12 @@ Page({
 
     // 结果
     localResults: [],
+    standardResults: [],
+    matchedExpert: null,
     aiResponse: '',
     hasLocalResults: false,
+    hasStandardResults: false,
+    hasMatchedExpert: false,
     hasAiResponse: false,
 
     // 热门搜索
@@ -44,13 +49,20 @@ Page({
       '基坑抗隆起稳定性验算方法？',
       'CFG桩复合地基承载力如何计算？',
       '边坡稳定性分析有哪些方法？'
-    ]
+    ],
+
+    // 专家列表
+    experts: []
   },
 
   onLoad() {
     // 加载搜索历史
     const history = wx.getStorageSync('search_history') || [];
     this.setData({ history: history.slice(0, 10) });
+
+    // 加载专家列表
+    const experts = getExpertList();
+    this.setData({ experts });
 
     // 测试AI连接
     this.checkAiConnection();
@@ -98,8 +110,12 @@ Page({
       isSearching: true,
       searchDone: false,
       localResults: [],
+      standardResults: [],
+      matchedExpert: null,
       aiResponse: '',
       hasLocalResults: false,
+      hasStandardResults: false,
+      hasMatchedExpert: false,
       hasAiResponse: false,
       aiSearching: false,
       aiError: null,
@@ -109,18 +125,35 @@ Page({
     // 保存搜索历史
     this.saveHistory(keyword);
 
-    // 第一步：查询本地知识库
-    const localResults = searchKnowledge(keyword);
+    // 第一步：查询本地知识库（包含规范和专家匹配）
+    const searchResult = searchKnowledge(keyword);
+    const localResults = searchResult.results || [];
+    const standardResults = searchResult.standards || [];
+    const matchedExpert = searchResult.expert;
 
     this.setData({
       localResults: localResults.slice(0, 10),
+      standardResults: standardResults.slice(0, 5),
+      matchedExpert: matchedExpert,
       hasLocalResults: localResults.length > 0,
+      hasStandardResults: standardResults.length > 0,
+      hasMatchedExpert: !!matchedExpert,
       aiSearching: true
     });
 
     // 第二步：调用AI进行智能搜索
     try {
-      const result = await intelligentSearch(keyword, localResults);
+      // 构建包含规范和专家信息的上下文
+      let enhancedContext = localResults;
+      if (standardResults.length > 0) {
+        enhancedContext = [...localResults, ...standardResults.map(s => ({
+          type: 'standard',
+          name: s.title,
+          description: `${s.standardCode} ${s.clause}: ${s.content}`
+        }))];
+      }
+
+      const result = await intelligentSearch(keyword, enhancedContext);
 
       this.setData({
         aiResponse: result.aiResponse || '',
@@ -191,6 +224,37 @@ Page({
   },
 
   /**
+   * 点击规范结果
+   */
+  onStandardResultTap(e) {
+    const item = e.currentTarget.dataset.item;
+    wx.showModal({
+      title: item.title,
+      content: `规范：${item.standardCode}\n条款：${item.clause}\n\n${item.content}`,
+      showCancel: false
+    });
+  },
+
+  /**
+   * 查看专家详情
+   */
+  onViewExpert(e) {
+    const expert = e.currentTarget.dataset.expert;
+    wx.showModal({
+      title: expert.name,
+      content: `${expert.title}\n${expert.affiliation}\n\n专长：${expert.specialties.join('、')}\n\n${expert.description}`,
+      confirmText: '咨询专家',
+      success: (res) => {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/consultation/consultation'
+          });
+        }
+      }
+    });
+  },
+
+  /**
    * 格式化本地结果
    */
   formatLocalResult(item) {
@@ -229,8 +293,12 @@ Page({
       isSearching: false,
       searchDone: false,
       localResults: [],
+      standardResults: [],
+      matchedExpert: null,
       aiResponse: '',
       hasLocalResults: false,
+      hasStandardResults: false,
+      hasMatchedExpert: false,
       hasAiResponse: false,
       aiSearching: false,
       aiError: null,

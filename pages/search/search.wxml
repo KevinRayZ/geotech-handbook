@@ -4,7 +4,7 @@
   <view class="search-header">
     <t-search
       value="{{searchValue}}"
-      placeholder="查询岩土工程参数、公式、工法..."
+      placeholder="查询公式、工法、规范、参数..."
       shape="round"
       focus="{{true}}"
       bind:change="onSearchInput"
@@ -35,7 +35,7 @@
     <text class="loading-text">正在搜索...</text>
   </view>
 
-  <!-- 未搜索状态：显示热门搜索和历史 -->
+  <!-- 未搜索状态 -->
   <view class="pre-search" wx:if="{{!isSearching && !searchDone}}">
     <!-- AI连接状态 -->
     <view class="ai-status {{aiConnected ? 'connected' : 'disconnected'}}" wx:if="{{!aiConnected}}">
@@ -80,6 +80,31 @@
       </view>
     </view>
 
+    <!-- 专家团队 -->
+    <view class="section" wx:if="{{experts.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">专家团队</text>
+        <t-icon name="user" size="20px" color="#0052d9"/>
+      </view>
+      <view class="expert-list">
+        <view
+          class="expert-mini-card"
+          wx:for="{{experts}}"
+          wx:key="id"
+          data-expert="{{item}}"
+          bind:tap="onViewExpert"
+        >
+          <view class="expert-avatar-mini">
+            <t-icon name="user" size="20px" color="#0052d9"/>
+          </view>
+          <view class="expert-brief">
+            <text class="expert-name-mini">{{item.name}}</text>
+            <text class="expert-spec-mini">{{item.specialties[0]}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <!-- 示例问题 -->
     <view class="section">
       <view class="section-header">
@@ -103,6 +128,21 @@
 
   <!-- 搜索结果 -->
   <view class="search-results" wx:if="{{searchDone}}">
+    <!-- 专家匹配提示 -->
+    <view class="expert-match" wx:if="{{hasMatchedExpert}}">
+      <view class="match-header">
+        <t-icon name="user" size="20px" color="#0052d9"/>
+        <text class="match-title">相关专家</text>
+      </view>
+      <view class="match-card" data-expert="{{matchedExpert}}" bind:tap="onViewExpert">
+        <view class="match-info">
+          <text class="match-name">{{matchedExpert.name}}</text>
+          <text class="match-desc">{{matchedExpert.description}}</text>
+        </view>
+        <t-icon name="chevron-right" size="20px" color="#999"/>
+      </view>
+    </view>
+
     <!-- 本地知识库结果 -->
     <view class="result-section" wx:if="{{hasLocalResults}}">
       <view class="result-header">
@@ -126,6 +166,30 @@
           <view class="result-formula" wx:if="{{item.formula}}">{{item.formula}}</view>
           <view class="result-desc">{{item.description}}</view>
           <view class="result-category">{{item.categoryName || item.category}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 规范条款结果 -->
+    <view class="result-section standard-section" wx:if="{{hasStandardResults}}">
+      <view class="result-header">
+        <t-icon name="file" size="20px" color="#e37318"/>
+        <text class="result-title">规范条款</text>
+        <t-tag theme="warning" size="small">{{standardResults.length}}条</t-tag>
+      </view>
+
+      <view class="result-list">
+        <view
+          class="result-item standard-item"
+          wx:for="{{standardResults}}"
+          wx:key="id"
+          data-item="{{item}}"
+          bind:tap="onStandardResultTap"
+        >
+          <view class="standard-code">{{item.standardCode}}</view>
+          <view class="result-name">{{item.title}}</view>
+          <view class="standard-clause">条款 {{item.clause}}</view>
+          <view class="result-desc">{{item.content}}</view>
         </view>
       </view>
     </view>
@@ -169,7 +233,7 @@
     </view>
 
     <!-- 无结果 -->
-    <view class="no-result" wx:if="{{!hasLocalResults && !hasAiResponse && !aiSearching && !aiError}}">
+    <view class="no-result" wx:if="{{!hasLocalResults && !hasStandardResults && !hasMatchedExpert && !hasAiResponse && !aiSearching && !aiError}}">
       <t-icon name="search" size="48px" color="#ccc"/>
       <text class="no-result-text">未找到相关内容</text>
       <text class="no-result-hint">请尝试其他关键词，或使用更专业的术语</text>

@@ -214,3 +214,36 @@
   font-size: 24rpx;
   color: #999;
 }
+
+/* 专项咨询入口 */
+.consultation-banner {
+  margin: 20rpx;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 2rpx solid #e37318;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(227, 115, 24, 0.15);
+}
+
+.banner-left {
+  flex-shrink: 0;
+}
+
+.banner-center {
+  flex: 1;
+}
+
+.banner-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.banner-desc {
+  font-size: 24rpx;
+  color: #666;
+}

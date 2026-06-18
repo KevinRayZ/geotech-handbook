@@ -17,7 +17,7 @@
     <view class="status-content">
       <view class="status-title">知识库已就绪</view>
       <view class="status-desc">
-        {{stats.categories}}个分类 | {{stats.formulas}}条公式 | {{stats.methods}}种工法
+        {{stats.categories}}个分类 | {{stats.formulas}}条公式 | {{stats.standards}}条规范
       </view>
     </view>
   </view>
@@ -34,7 +34,7 @@
 
   <!-- 功能入口 -->
   <view class="feature-grid">
-    <!-- 快捷查询（新增，放在最前面） -->
+    <!-- 快捷查询 -->
     <view class="feature-item primary" bind:tap="goSearch">
       <view class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
         <t-icon name="search" size="28px" color="#fff"/>
@@ -48,7 +48,7 @@
         <t-icon name="book" size="28px" color="#fff"/>
       </view>
       <view class="feature-name">知识库</view>
-      <view class="feature-desc">公式 · 工法 · 参数</view>
+      <view class="feature-desc">公式 · 工法 · 规范</view>
     </view>
 
     <view class="feature-item" bind:tap="goAdvisor">
@@ -56,17 +56,29 @@
         <t-icon name="lightbulb" size="28px" color="#fff"/>
       </view>
       <view class="feature-name">方案推荐</view>
-      <view class="feature-desc">智能选型 · 经验参考</view>
+      <view class="feature-desc">智能选型</view>
     </view>
+  </view>
+
+  <!-- 专项咨询入口 -->
+  <view class="consultation-banner" bind:tap="goConsultation">
+    <view class="banner-left">
+      <t-icon name="service" size="32px" color="#e37318"/>
+    </view>
+    <view class="banner-center">
+      <view class="banner-title">专项方案咨询</view>
+      <view class="banner-desc">专业团队提供技术支持 · 付费服务</view>
+    </view>
+    <t-icon name="chevron-right" size="24px" color="#999"/>
   </view>
 
   <!-- 快速搜索 -->
   <view class="quick-search">
     <view class="section-title">热门搜索</view>
     <view class="search-tags">
-      <view 
-        class="search-tag" 
-        wx:for="{{recentSearches}}" 
+      <view
+        class="search-tag"
+        wx:for="{{recentSearches}}"
         wx:key="*this"
         data-keyword="{{item}}"
         bind:tap="onQuickSearch"

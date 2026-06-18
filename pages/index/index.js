@@ -59,6 +59,15 @@ Page({
   },
 
   /**
+   * 跳转到专项咨询
+   */
+  goConsultation() {
+    wx.navigateTo({
+      url: '/pages/consultation/consultation'
+    });
+  },
+
+  /**
    * 跳转到测试页面
    */
   goTest() {

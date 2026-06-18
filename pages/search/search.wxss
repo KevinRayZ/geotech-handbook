@@ -128,6 +128,50 @@
   background: #e8e8e8;
 }
 
+/* 专家列表 */
+.expert-list {
+  display: flex;
+  gap: 16rpx;
+  overflow-x: auto;
+  padding-bottom: 8rpx;
+}
+
+.expert-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx 20rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+}
+
+.expert-avatar-mini {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f0fe;
+  border-radius: 50%;
+}
+
+.expert-brief {
+  display: flex;
+  flex-direction: column;
+}
+
+.expert-name-mini {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.expert-spec-mini {
+  font-size: 22rpx;
+  color: #999;
+}
+
 /* 示例问题 */
 .example-list {
   display: flex;
@@ -155,6 +199,57 @@
   padding: 20rpx;
 }
 
+/* 专家匹配 */
+.expert-match {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
+}
+
+.match-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 24rpx 30rpx;
+  background: #e8f0fe;
+}
+
+.match-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0052d9;
+}
+
+.match-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+}
+
+.match-info {
+  flex: 1;
+}
+
+.match-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.match-desc {
+  font-size: 24rpx;
+  color: #666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* 结果区块 */
 .result-section {
   background: #fff;
   border-radius: 16rpx;
@@ -234,6 +329,31 @@
 .result-category {
   font-size: 22rpx;
   color: #999;
+}
+
+/* 规范条款 */
+.standard-section {
+  border: 2rpx solid #e37318;
+}
+
+.standard-item {
+  background: #fff7ed;
+}
+
+.standard-code {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  background: #e37318;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  margin-bottom: 12rpx;
+}
+
+.standard-clause {
+  font-size: 24rpx;
+  color: #e37318;
+  margin-bottom: 8rpx;
 }
 
 /* AI搜索中 */

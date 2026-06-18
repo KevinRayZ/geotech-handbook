@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-divider": "tdesign-miniprogram/divider/divider"
+  },
+  "navigationBarTitleText": "专项方案咨询"
+}
